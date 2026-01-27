@@ -1,0 +1,19 @@
+{
+  "name": "@mts-ds/icons",
+  "version": "3.0.0",
+  "description": "MTS Design-System Web Icons Pack",
+  "license": "GPL-3.0",
+  "homepage": "https://design.mts.ru/",
+  "bugs": "https://gitlab.services.mts.ru/digital-products/design-system/infrastructure/figma-worker/-/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.services.mts.ru/digital-products/design-system/infrastructure/figma-worker.git"
+  },
+  "files": [
+    "/**/*.+(svg)"
+  ],
+  "scripts": {
+    "apply-changes": "yarn node ./apply-changes.mjs ../worker/assets/ii-diff.json ../worker/assets/iid-diff.json",
+    "import-assets": "bash ./import-assets.sh"
+  }
+}

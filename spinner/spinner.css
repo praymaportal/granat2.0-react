@@ -1,0 +1,89 @@
+.gr-spinner {
+  --gr-spinner-size: 24px;
+  --gr-spinner-stroke: 3px;
+  --gr-spinner-color: var(--color-icon-primary, #1d2023);
+  --gr-spinner-track: var(--color-control-inactive, rgba(188, 195, 208, 0.5));
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--gr-spinner-size);
+  height: var(--gr-spinner-size);
+  border-radius: 999px;
+  border: var(--gr-spinner-stroke) solid var(--gr-spinner-track);
+  border-top-color: var(--gr-spinner-color);
+  animation: gr-spinner-rotate 0.9s linear infinite;
+}
+
+.gr-spinner--16 {
+  --gr-spinner-size: 16px;
+  --gr-spinner-stroke: 2px;
+}
+
+.gr-spinner--24 {
+  --gr-spinner-size: 24px;
+  --gr-spinner-stroke: 3px;
+}
+
+.gr-spinner--44 {
+  --gr-spinner-size: 44px;
+  --gr-spinner-stroke: 4px;
+}
+
+.gr-spinner--default {
+  --gr-spinner-color: var(--color-icon-primary, #1d2023);
+}
+
+.gr-spinner--inverted {
+  --gr-spinner-color: var(--color-text-inverted, #fafafa);
+}
+
+.gr-spinner--accent {
+  --gr-spinner-color: var(--color-brand, #ff0032);
+}
+
+.gr-spinner--negative {
+  --gr-spinner-color: var(--color-accent-negative, #f95721);
+}
+
+.gr-spinner--always-white {
+  --gr-spinner-color: var(--color-constant-greyscale-0, #ffffff);
+}
+
+.gr-spinner--always-black {
+  --gr-spinner-color: var(--color-constant-greyscale-900, #000000);
+}
+
+.gr-spinner--ghost-primary {
+  --gr-spinner-color: color-mix(in srgb, var(--color-icon-primary, #1d2023) 70%, transparent);
+  --gr-spinner-track: var(--color-control-inactive, rgba(188, 195, 208, 0.5));
+}
+
+.gr-spinner--ghost-secondary {
+  --gr-spinner-color: color-mix(in srgb, var(--color-icon-secondary, #8d969f) 70%, transparent);
+  --gr-spinner-track: var(--color-control-inactive, rgba(188, 195, 208, 0.5));
+}
+
+.gr-spinner--slow {
+  animation-duration: 1.2s;
+}
+
+.gr-spinner--normal {
+  animation-duration: 0.9s;
+}
+
+.gr-spinner--fast {
+  animation-duration: 0.6s;
+}
+
+@keyframes gr-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gr-spinner {
+    animation-duration: 1.6s;
+  }
+}

@@ -1,0 +1,13 @@
+:root {
+  --granat-font-family: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+  --granat-color-ink: #121014;
+  --granat-color-muted: #6a5b4e;
+  --granat-color-surface: #ffffff;
+  --granat-color-border: #e2d8cf;
+  --granat-color-primary: #c24f3f;
+  --granat-color-primary-strong: #a23a2d;
+  --granat-color-contrast: #1c1f2a;
+  --granat-radius-sm: 10px;
+  --granat-radius-md: 14px;
+  --granat-shadow-sm: 0 6px 18px rgba(28, 20, 16, 0.08);
+}

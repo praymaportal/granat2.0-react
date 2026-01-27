@@ -1,0 +1,65 @@
+:root {
+  font-family: 'MTS Text', 'MTS Wide', sans-serif;
+  color: #101014;
+  background: radial-gradient(circle at 20% 0%, #f4f0ea 0%, #f7f2ed 40%, #f8f6f2 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.dev-shell {
+  padding: 64px clamp(20px, 6vw, 120px);
+}
+
+.dev-hero {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dev-kicker {
+  font-family: 'MTS Compact', 'MTS Text', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6a5b4e;
+  margin: 0;
+}
+
+.dev-hero h1 {
+  font-family: 'MTS Wide', 'MTS Text', sans-serif;
+  font-size: clamp(32px, 5vw, 52px);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.dev-subtitle {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+  color: #3e342c;
+}
+
+.dev-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .dev-shell {
+    padding: 48px 20px;
+  }
+}
