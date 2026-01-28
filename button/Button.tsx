@@ -21,7 +21,9 @@ const VARIANT_CLASS_MAP: Record<ButtonVariant, string> = {
   'primary-alternate': 'gr-button--primary-alternate',
   'always-white': 'gr-button--always-white',
   secondary: 'gr-button--secondary',
+  'secondary-alternate': 'gr-button--secondary-alternate',
   negative: 'gr-button--negative',
+  'negative-alternate': 'gr-button--negative-alternate',
   ghost: 'gr-button--ghost',
   blur: 'gr-button--blur',
   disabled: 'gr-button--disabled'
@@ -40,7 +42,9 @@ const SPINNER_VARIANT_MAP: Record<ButtonVariant, SpinnerVariant> = {
   'primary-alternate': 'inverted',
   'always-white': 'always-black',
   secondary: 'default',
+  'secondary-alternate': 'default',
   negative: 'negative',
+  'negative-alternate': 'negative',
   ghost: 'default',
   blur: 'always-white',
   disabled: 'default'
@@ -58,6 +62,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       iconPosition = 'left',
       iconOnly = false,
       loading = false,
+      fluid = false,
       className,
       type = 'button',
       disabled,
@@ -91,7 +96,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             'gr-button--icon-only': isIconOnly,
             'gr-button--icon-right': shouldShowIcon && iconPosition === 'right',
             'gr-button--has-icon': shouldShowIcon,
-            'gr-button--loading': isLoading
+            'gr-button--loading': isLoading,
+            'gr-button--fluid': fluid
           },
           className
         )}

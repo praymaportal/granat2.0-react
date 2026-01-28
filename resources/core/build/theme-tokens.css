@@ -48,6 +48,8 @@
   --color-control-active-tab-bar:#ff0032;
   --color-control-inactive-tab-bar:#8d969f;
   --color-control-stroke:#8d969f;
+  --color-control-hover-primary:rgba(188, 195, 208, 0.40);
+  --color-control-hover-alternative:rgba(242, 243, 247, 0.12);
   --color-icon-primary:#1d2023;
   --color-icon-secondary:#8d969f;
   --color-icon-tertiary:#bbc1c7;
@@ -106,6 +108,8 @@
   --color-control-active-tab-bar:#ffffff;
   --color-control-inactive-tab-bar:rgba(255, 255, 255, 0.46);
   --color-control-stroke:#636b72;
+  --color-control-hover-primary:rgba(188, 195, 208, 0.40);
+  --color-control-hover-alternative:rgba(188, 195, 208, 0.40);
   --color-icon-primary:#fafafa;
   --color-icon-secondary:#969fa8;
   --color-icon-tertiary:#626c77;

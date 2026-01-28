@@ -7,7 +7,9 @@ export type ButtonVariant =
   | 'primary-alternate'
   | 'always-white'
   | 'secondary'
+  | 'secondary-alternate'
   | 'negative'
+  | 'negative-alternate'
   | 'ghost'
   | 'blur'
   | 'disabled';
@@ -25,4 +27,5 @@ export interface ButtonProps
   iconPosition?: ButtonIconPosition;
   iconOnly?: boolean;
   loading?: boolean;
+  fluid?: boolean;
 }

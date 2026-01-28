@@ -1,20 +1,42 @@
 .gr-button {
+  all: unset;
   --gr-button-height: 52px;
   --gr-button-padding-x: 24px;
   --gr-button-font-size: 14px;
   --gr-button-line-height: 20px;
   --gr-button-icon-size: 24px;
   --gr-button-letter-spacing: 0.6px;
+  --gr-button-hover-overlay: var(--color-background-hover, rgba(188, 195, 208, 0.25));
+  --gr-button-hover-blend: var(--blend-hover, multiply);
+  --gr-button-hover-opacity: 0;
+  --gr-button-focus-opacity: 0;
+  --gr-button-radius: 1rem;
+  --gr-button-active-scale: 1;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  box-sizing: border-box;
+  min-width: var(--gr-button-height);
+  max-width: 100%;
   height: var(--gr-button-height);
   padding: 0 var(--gr-button-padding-x);
-  border-radius: 999px;
+  border-radius: var(--gr-button-radius);
   border: none;
+  outline: none;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  position: relative;
+  z-index: 0;
+  overflow: visible;
+  isolation: isolate;
+  transform: scale(1);
+  transition: transform 125ms ease-in-out;
   font-family: 'MTS Wide', sans-serif;
   font-size: var(--gr-button-font-size);
   line-height: var(--gr-button-line-height);
@@ -25,6 +47,55 @@
   background: var(--gr-button-bg, transparent);
 }
 
+.gr-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gr-button-hover-overlay);
+  mix-blend-mode: var(--gr-button-hover-blend);
+  opacity: var(--gr-button-hover-opacity);
+  border-radius: inherit;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.gr-button::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--gr-button-radius) + 2px);
+  border: 1px solid var(--color-accent-active, #007cff);
+  opacity: var(--gr-button-focus-opacity);
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity 0.2s ease;
+}
+
+.gr-button:hover:not(:disabled):not(.gr-button--disabled):not(.gr-button--loading),
+.gr-button:active:not(:disabled):not(.gr-button--disabled):not(.gr-button--loading) {
+  --gr-button-hover-opacity: 1;
+}
+
+@supports not (-moz-appearance: none) {
+  .gr-button:active:not(:disabled):not(.gr-button--disabled):not(.gr-button--loading) {
+    transform: scale(var(--gr-button-active-scale));
+    transition-duration: 62.5ms;
+    will-change: transform;
+  }
+}
+
+.gr-button:focus-visible:not(:disabled):not(.gr-button--disabled),
+.gr-button.focus-visible:not(:disabled):not(.gr-button--disabled),
+.gr-button[data-focus='true']:not(:disabled):not(.gr-button--disabled) {
+  --gr-button-focus-opacity: 1;
+}
+
+@supports not selector(:focus-visible) {
+  .gr-button:focus:not(:disabled):not(.gr-button--disabled) {
+    --gr-button-focus-opacity: 1;
+  }
+}
+
 .gr-button--24 {
   --gr-button-height: 24px;
   --gr-button-padding-x: 12px;
@@ -32,6 +103,8 @@
   --gr-button-line-height: 12px;
   --gr-button-icon-size: 16px;
   --gr-button-letter-spacing: 0.5px;
+  --gr-button-active-scale: 0.9166;
+  --gr-button-radius: 0.5rem;
 }
 
 .gr-button--32 {
@@ -41,6 +114,8 @@
   --gr-button-line-height: 12px;
   --gr-button-icon-size: 16px;
   --gr-button-letter-spacing: 0.5px;
+  --gr-button-active-scale: 0.9375;
+  --gr-button-radius: 0.75rem;
 }
 
 .gr-button--44 {
@@ -50,6 +125,8 @@
   --gr-button-line-height: 16px;
   --gr-button-icon-size: 24px;
   --gr-button-letter-spacing: 0.6px;
+  --gr-button-active-scale: 0.9545;
+  --gr-button-radius: 1rem;
 }
 
 .gr-button--52 {
@@ -59,6 +136,8 @@
   --gr-button-line-height: 20px;
   --gr-button-icon-size: 24px;
   --gr-button-letter-spacing: 0.6px;
+  --gr-button-active-scale: 0.9615;
+  --gr-button-radius: 1rem;
 }
 
 .gr-button--72 {
@@ -68,31 +147,49 @@
   --gr-button-line-height: 20px;
   --gr-button-icon-size: 24px;
   --gr-button-letter-spacing: 0.7px;
+  --gr-button-active-scale: 0.9722;
+  --gr-button-radius: 1.25rem;
 }
 
 .gr-button--primary {
   --gr-button-bg: var(--color-brand, #ff0032);
   --gr-button-text: var(--color-constant-greyscale-0, #ffffff);
+  --gr-button-hover-overlay: var(--color-control-hover-primary, rgba(188, 195, 208, 0.25));
 }
 
 .gr-button--primary-alternate {
   --gr-button-bg: var(--color-control-secondary-active, #1d2023);
   --gr-button-text: var(--color-constant-greyscale-0, #ffffff);
+  --gr-button-hover-overlay: var(--color-control-hover-alternative, rgba(242, 243, 247, 0.2));
+  --gr-button-hover-blend: var(--blend-hover-inverted, normal);
 }
 
 .gr-button--always-white {
   --gr-button-bg: var(--color-constant-greyscale-0, #ffffff);
   --gr-button-text: var(--color-text-primary, #1d2023);
+  --gr-button-hover-overlay: var(--color-control-hover-primary, rgba(188, 195, 208, 0.25));
 }
 
 .gr-button--secondary {
-  --gr-button-bg: var(--color-background-secondary, #f2f3f7);
+  --gr-button-bg: var(--color-control-tertiary-active, #f2f3f7);
   --gr-button-text: var(--color-text-primary, #1d2023);
+}
+
+.gr-button--secondary-alternate {
+  --gr-button-bg: var(--color-control-alternative, #ffffff);
+  --gr-button-text: var(--color-text-primary, #1d2023);
+  --gr-button-hover-overlay: var(--color-control-hover-primary, rgba(188, 195, 208, 0.4));
 }
 
 .gr-button--negative {
   --gr-button-bg: var(--color-control-tertiary-active, #f2f3f7);
   --gr-button-text: var(--color-text-negative, #db400c);
+}
+
+.gr-button--negative-alternate {
+  --gr-button-bg: var(--color-control-alternative, #ffffff);
+  --gr-button-text: var(--color-text-negative, #db400c);
+  --gr-button-hover-overlay: var(--color-control-hover-primary, rgba(188, 195, 208, 0.4));
 }
 
 .gr-button--ghost {
@@ -101,15 +198,16 @@
 }
 
 .gr-button--blur {
-  --gr-button-bg: color-mix(in srgb, var(--color-background-primary, #ffffff) 60%, transparent);
-  --gr-button-text: var(--color-text-primary, #1d2023);
-  backdrop-filter: blur(40px);
+  --gr-button-bg: var(--color-control-blur, hsla(0, 0%, 100%, 0.08));
+  --gr-button-text: var(--color-constant-greyscale-0, #ffffff);
+  backdrop-filter: blur(20px);
 }
 
 .gr-button--disabled,
 .gr-button:disabled {
   --gr-button-bg: var(--color-control-inactive, rgba(188, 195, 208, 0.5));
   --gr-button-text: var(--color-text-tertiary, #969fa8);
+  --gr-button-hover-opacity: 0;
   cursor: not-allowed;
   opacity: 0.5;
 }
@@ -123,6 +221,10 @@
   padding: 0;
 }
 
+.gr-button--fluid {
+  width: 100%;
+}
+
 
 .gr-button__icon {
   display: inline-flex;
@@ -131,10 +233,19 @@
   width: var(--gr-button-icon-size);
   height: var(--gr-button-icon-size);
   color: inherit;
+  position: relative;
+  z-index: 1;
 }
 
 .gr-button__label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.gr-button > .gr-spinner {
+  position: relative;
+  z-index: 1;
 }

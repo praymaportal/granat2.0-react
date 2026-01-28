@@ -2,14 +2,17 @@ import { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import ButtonStory from '../stories/Button.story';
 import SpinnerStory from '../stories/Spinner.story';
+import IconButtonStory from '../stories/IconButton.story';
 
 const navItems = [
   { id: 'button', label: 'button' },
+  { id: 'icon-button', label: 'icon button' },
   { id: 'spinner', label: 'spinner' }
 ];
 
 const storyMap = {
   button: <ButtonStory />,
+  'icon-button': <IconButtonStory />,
   spinner: <SpinnerStory />
 } as const;
 

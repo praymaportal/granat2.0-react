@@ -1,33 +1,51 @@
 .gr-spinner {
+  all: unset;
   --gr-spinner-size: 24px;
-  --gr-spinner-stroke: 3px;
   --gr-spinner-color: var(--color-icon-primary, #1d2023);
-  --gr-spinner-track: var(--color-control-inactive, rgba(188, 195, 208, 0.5));
+  --gr-spinner-background: conic-gradient(
+    from 90deg,
+    transparent 0,
+    transparent 35deg,
+    var(--gr-spinner-color) 320deg,
+    transparent 320deg,
+    transparent 360deg
+  );
+  --gr-spinner-mask: none;
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   width: var(--gr-spinner-size);
   height: var(--gr-spinner-size);
-  border-radius: 999px;
-  border: var(--gr-spinner-stroke) solid var(--gr-spinner-track);
-  border-top-color: var(--gr-spinner-color);
-  animation: gr-spinner-rotate 0.9s linear infinite;
+  background: var(--gr-spinner-background);
+  -webkit-mask: var(--gr-spinner-mask);
+  mask: var(--gr-spinner-mask);
+  animation: gr-spinner-rotate 1s linear infinite;
+  will-change: transform;
+}
+
+@supports (background: conic-gradient(red 0deg, red 0deg 1deg, red 2deg)) {
+  .gr-spinner {
+    --gr-spinner-background: conic-gradient(
+      from 90deg,
+      transparent 0 35deg,
+      var(--gr-spinner-color) 320deg,
+      transparent 320deg 360deg
+    );
+  }
 }
 
 .gr-spinner--16 {
-  --gr-spinner-size: 16px;
-  --gr-spinner-stroke: 2px;
+  --gr-spinner-size: 1rem;
+  --gr-spinner-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='5' fill='none' stroke='black' stroke-width='2' stroke-dasharray='26' stroke-dashoffset='0' stroke-linecap='round' /%3E%3C/svg%3E") center center no-repeat;
 }
 
 .gr-spinner--24 {
-  --gr-spinner-size: 24px;
-  --gr-spinner-stroke: 3px;
+  --gr-spinner-size: 1.5rem;
+  --gr-spinner-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='8.5' fill='none' stroke='black' stroke-width='3' stroke-dasharray='45' stroke-dashoffset='0' stroke-linecap='round' /%3E%3C/svg%3E") center center no-repeat;
 }
 
 .gr-spinner--44 {
-  --gr-spinner-size: 44px;
-  --gr-spinner-stroke: 4px;
+  --gr-spinner-size: 2.75rem;
+  --gr-spinner-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='22' cy='22' r='15.5' fill='none' stroke='black' stroke-width='5' stroke-dasharray='83' stroke-dashoffset='0' stroke-linecap='round' /%3E%3C/svg%3E") center center no-repeat;
 }
 
 .gr-spinner--default {
@@ -56,12 +74,10 @@
 
 .gr-spinner--ghost-primary {
   --gr-spinner-color: color-mix(in srgb, var(--color-icon-primary, #1d2023) 70%, transparent);
-  --gr-spinner-track: var(--color-control-inactive, rgba(188, 195, 208, 0.5));
 }
 
 .gr-spinner--ghost-secondary {
   --gr-spinner-color: color-mix(in srgb, var(--color-icon-secondary, #8d969f) 70%, transparent);
-  --gr-spinner-track: var(--color-control-inactive, rgba(188, 195, 208, 0.5));
 }
 
 .gr-spinner--slow {
@@ -69,7 +85,7 @@
 }
 
 .gr-spinner--normal {
-  animation-duration: 0.9s;
+  animation-duration: 1s;
 }
 
 .gr-spinner--fast {

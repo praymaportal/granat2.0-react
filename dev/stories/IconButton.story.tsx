@@ -1,11 +1,11 @@
-import { Button } from '../../button';
-import type { ButtonVariant, ButtonSize, ButtonIconPosition } from '../../button';
+import { IconButton } from '../../iconbutton';
+import type { IconButtonSize, IconButtonVariant } from '../../iconbutton';
 import StorySection from '../storybook/components/StorySection';
 import Icon from '../storybook/components/Icon';
 
-const sizes: ButtonSize[] = [24, 32, 44, 52, 72];
+const sizes: IconButtonSize[] = [24, 32, 44, 52, 72];
 
-const sizeLabels: Record<ButtonSize, string> = {
+const sizeLabels: Record<IconButtonSize, string> = {
   24: '24 Extra Small',
   32: '32 Small',
   44: '44 Medium',
@@ -14,28 +14,27 @@ const sizeLabels: Record<ButtonSize, string> = {
 };
 
 const variants: Array<{
-  id: ButtonVariant;
+  id: IconButtonVariant;
   label: string;
   surface?: 'dark' | 'light' | 'secondary';
   surfaceClass?: string;
 }> = [
   { id: 'primary', label: 'Primary', surface: 'light' },
   { id: 'primary-alternate', label: 'Primary Alternate', surface: 'light' },
-  { id: 'always-white', label: 'Always White', surface: 'dark' },
   { id: 'secondary', label: 'Secondary', surface: 'light' },
   { id: 'secondary-alternate', label: 'Secondary Alternate', surface: 'secondary' },
+  { id: 'blur', label: 'Blur', surface: 'light', surfaceClass: 'sb-surface--blur' },
+  { id: 'always-white', label: 'Always White', surface: 'dark' },
+  { id: 'ghost', label: 'Ghost Primary', surface: 'light' },
+  { id: 'ghost-secondary', label: 'Ghost Secondary', surface: 'light' },
+  { id: 'scroll', label: 'Scroll', surface: 'light', surfaceClass: 'sb-surface--blur' },
   { id: 'negative', label: 'Negative', surface: 'light' },
   { id: 'negative-alternate', label: 'Negative Alternate', surface: 'secondary' },
-  { id: 'ghost', label: 'Ghost', surface: 'light' },
-  { id: 'blur', label: 'Blur', surface: 'light', surfaceClass: 'sb-surface--blur' },
-  { id: 'disabled', label: 'Disabled', surface: 'light' }
+  { id: 'disabled', label: 'Disabled', surface: 'light' },
+  { id: 'disabled-ghost', label: 'Disabled Ghost', surface: 'light' }
 ];
 
-function renderButtonGrid(
-  iconPosition?: ButtonIconPosition,
-  loading = false,
-  fluid = false
-) {
+function renderIconButtonGrid(loading = false) {
   return (
     <div className="sb-button-grid">
       <div className="sb-button-grid__row sb-button-grid__row--header">
@@ -47,11 +46,11 @@ function renderButtonGrid(
         ))}
       </div>
       {variants.map((variant) => (
-        <div key={`${variant.id}-${iconPosition ?? 'text'}`} className="sb-button-grid__row">
+        <div key={`${variant.id}-${loading ? 'loading' : 'default'}`} className="sb-button-grid__row">
           <div className="sb-button-grid__cell sb-button-grid__cell--label">{variant.label}</div>
           {sizes.map((size) => {
             const iconSize = size <= 32 ? 16 : 24;
-            const iconNode = iconPosition ? <Icon name="plus" size={iconSize} /> : undefined;
+            const iconNode = <Icon name="plus" size={iconSize} />;
 
             return (
               <div key={`${variant.id}-${size}`} className="sb-button-grid__cell">
@@ -64,15 +63,12 @@ function renderButtonGrid(
                         : 'sb-surface--light'
                   } ${variant.surfaceClass ?? ''}`}
                 >
-                  <Button
+                  <IconButton
                     size={size}
                     variant={variant.id}
-                    label="Кнопка"
                     icon={iconNode}
-                    showIcon={Boolean(iconPosition)}
-                    iconPosition={iconPosition}
+                    label="Кнопка"
                     loading={loading}
-                    fluid={fluid}
                   />
                 </div>
               </div>
@@ -84,29 +80,17 @@ function renderButtonGrid(
   );
 }
 
-export default function ButtonStory() {
+export default function IconButtonStory() {
   return (
-    <StorySection id="button" title="button" description="Типы и размеры кнопки.">
+    <StorySection id="icon-button" title="icon button" description="Иконка в кнопке.">
       <div className="sb-story-stack">
         <div className="sb-story-block">
-          <p className="sb-story-block__title">Text only</p>
-          {renderButtonGrid()}
-        </div>
-        <div className="sb-story-block">
-          <p className="sb-story-block__title">Icon left</p>
-          {renderButtonGrid('left')}
-        </div>
-        <div className="sb-story-block">
-          <p className="sb-story-block__title">Icon right</p>
-          {renderButtonGrid('right')}
+          <p className="sb-story-block__title">Default</p>
+          {renderIconButtonGrid(false)}
         </div>
         <div className="sb-story-block">
           <p className="sb-story-block__title">Loading</p>
-          {renderButtonGrid(undefined, true)}
-        </div>
-        <div className="sb-story-block">
-          <p className="sb-story-block__title">Fluid</p>
-          {renderButtonGrid(undefined, false, true)}
+          {renderIconButtonGrid(true)}
         </div>
       </div>
     </StorySection>
