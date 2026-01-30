@@ -4,10 +4,12 @@ import ButtonStory from '../stories/Button.story';
 import SpinnerStory from '../stories/Spinner.story';
 import IconButtonStory from '../stories/IconButton.story';
 import CardStory from '../stories/Card.story';
+import BadgeStory from '../stories/Badge.story';
 
 const navItems = [
   { id: 'button', label: 'button' },
   { id: 'icon-button', label: 'icon button' },
+  { id: 'badge', label: 'badge' },
   { id: 'card', label: 'card' },
   { id: 'spinner', label: 'spinner' }
 ];
@@ -15,6 +17,7 @@ const navItems = [
 const storyMap = {
   button: <ButtonStory />,
   'icon-button': <IconButtonStory />,
+  badge: <BadgeStory />,
   card: <CardStory />,
   spinner: <SpinnerStory />
 } as const;

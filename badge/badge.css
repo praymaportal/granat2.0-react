@@ -1,0 +1,117 @@
+.gr-badge {
+  --gr-badge-bg: var(--color-background-secondary, #f2f3f7);
+  --gr-badge-text-color: var(--color-text-primary, #1d2023);
+  --gr-badge-icon-color: var(--gr-badge-text-color);
+  --gr-badge-height: 24px;
+  --gr-badge-padding-x: 6px;
+  --gr-badge-padding-y: 2px;
+  --gr-badge-radius: var(--radius-8, 8px);
+  --gr-badge-gap: 4px;
+  --gr-badge-font-size: 14px;
+  --gr-badge-line-height: 20px;
+  --gr-badge-icon-size: 16px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gr-badge-gap);
+  min-height: var(--gr-badge-height);
+  padding: var(--gr-badge-padding-y) var(--gr-badge-padding-x);
+  border-radius: var(--gr-badge-radius);
+  background: var(--gr-badge-bg);
+  color: var(--gr-badge-text-color);
+  font-family: 'MTS Compact', sans-serif;
+  font-weight: 500;
+  font-size: var(--gr-badge-font-size);
+  line-height: var(--gr-badge-line-height);
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.gr-badge--default {
+  --gr-badge-bg: var(--color-background-secondary, #f2f3f7);
+  --gr-badge-text-color: var(--color-text-primary, #1d2023);
+  --gr-badge-icon-color: var(--color-icon-primary, #1d2023);
+}
+
+.gr-badge--on-primary {
+  --gr-badge-bg: var(--color-background-secondary, #f2f3f7);
+}
+
+.gr-badge--on-secondary {
+  --gr-badge-bg: var(--color-background-primary, #ffffff);
+}
+
+.gr-badge--custom {
+  --gr-badge-bg: var(--color-constant-blueberry-dark, #007cff);
+  --gr-badge-text-color: var(--color-constant-greyscale-0, #ffffff);
+  --gr-badge-icon-color: var(--color-constant-greyscale-0, #ffffff);
+}
+
+.gr-badge--16 {
+  --gr-badge-height: 16px;
+  --gr-badge-padding-x: 4px;
+  --gr-badge-padding-y: 1px;
+  --gr-badge-radius: var(--radius-6, 6px);
+  --gr-badge-gap: 2px;
+  --gr-badge-font-size: 12px;
+  --gr-badge-line-height: 16px;
+  --gr-badge-icon-size: 16px;
+}
+
+.gr-badge--20 {
+  --gr-badge-height: 20px;
+  --gr-badge-padding-x: 4px;
+  --gr-badge-padding-y: 2px;
+  --gr-badge-radius: var(--radius-6, 6px);
+  --gr-badge-gap: 2px;
+  --gr-badge-font-size: 12px;
+  --gr-badge-line-height: 16px;
+  --gr-badge-icon-size: 16px;
+}
+
+.gr-badge--24 {
+  --gr-badge-height: 24px;
+  --gr-badge-padding-x: 6px;
+  --gr-badge-padding-y: 2px;
+  --gr-badge-radius: var(--radius-8, 8px);
+  --gr-badge-gap: 4px;
+  --gr-badge-font-size: 14px;
+  --gr-badge-line-height: 20px;
+  --gr-badge-icon-size: 16px;
+}
+
+.gr-badge--32 {
+  --gr-badge-height: 32px;
+  --gr-badge-padding-x: 8px;
+  --gr-badge-padding-y: 4px;
+  --gr-badge-radius: var(--radius-12, 12px);
+  --gr-badge-gap: 4px;
+  --gr-badge-font-size: 17px;
+  --gr-badge-line-height: 24px;
+  --gr-badge-icon-size: 24px;
+}
+
+.gr-badge--icon-right {
+  flex-direction: row;
+}
+
+.gr-badge--icon-only {
+  padding: 0;
+  width: var(--gr-badge-height);
+}
+
+.gr-badge__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--gr-badge-icon-size);
+  height: var(--gr-badge-icon-size);
+  color: var(--gr-badge-icon-color);
+}
+
+.gr-badge__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
