@@ -1,11 +1,12 @@
 .gr-button {
   all: unset;
   --gr-button-height: 52px;
-  --gr-button-padding-x: 24px;
+  --gr-button-padding: 14px;
   --gr-button-font-size: 14px;
   --gr-button-line-height: 20px;
   --gr-button-icon-size: 24px;
   --gr-button-letter-spacing: 0.6px;
+  --gr-button-label-padding: 0;
   --gr-button-hover-overlay: var(--color-background-hover, rgba(188, 195, 208, 0.25));
   --gr-button-hover-blend: var(--blend-hover, multiply);
   --gr-button-hover-opacity: 0;
@@ -16,12 +17,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 0;
   box-sizing: border-box;
   min-width: var(--gr-button-height);
   max-width: 100%;
   height: var(--gr-button-height);
-  padding: 0 var(--gr-button-padding-x);
+  padding: var(--gr-button-padding);
   border-radius: var(--gr-button-radius);
   border: none;
   outline: none;
@@ -98,55 +99,60 @@
 
 .gr-button--24 {
   --gr-button-height: 24px;
-  --gr-button-padding-x: 12px;
+  --gr-button-padding: 4px;
   --gr-button-font-size: 10px;
   --gr-button-line-height: 12px;
   --gr-button-icon-size: 16px;
   --gr-button-letter-spacing: 0.5px;
+  --gr-button-label-padding: 2px 4px;
   --gr-button-active-scale: 0.9166;
   --gr-button-radius: 0.5rem;
 }
 
 .gr-button--32 {
   --gr-button-height: 32px;
-  --gr-button-padding-x: 16px;
+  --gr-button-padding: 8px;
   --gr-button-font-size: 10px;
   --gr-button-line-height: 12px;
   --gr-button-icon-size: 16px;
   --gr-button-letter-spacing: 0.5px;
+  --gr-button-label-padding: 2px 4px;
   --gr-button-active-scale: 0.9375;
   --gr-button-radius: 0.75rem;
 }
 
 .gr-button--44 {
   --gr-button-height: 44px;
-  --gr-button-padding-x: 20px;
+  --gr-button-padding: 10px;
   --gr-button-font-size: 12px;
   --gr-button-line-height: 16px;
   --gr-button-icon-size: 24px;
   --gr-button-letter-spacing: 0.6px;
+  --gr-button-label-padding: 4px 8px;
   --gr-button-active-scale: 0.9545;
   --gr-button-radius: 1rem;
 }
 
 .gr-button--52 {
   --gr-button-height: 52px;
-  --gr-button-padding-x: 24px;
+  --gr-button-padding: 14px;
   --gr-button-font-size: 14px;
   --gr-button-line-height: 20px;
   --gr-button-icon-size: 24px;
   --gr-button-letter-spacing: 0.6px;
+  --gr-button-label-padding: 4px 8px;
   --gr-button-active-scale: 0.9615;
   --gr-button-radius: 1rem;
 }
 
 .gr-button--72 {
   --gr-button-height: 72px;
-  --gr-button-padding-x: 32px;
+  --gr-button-padding: 24px;
   --gr-button-font-size: 14px;
   --gr-button-line-height: 20px;
   --gr-button-icon-size: 24px;
   --gr-button-letter-spacing: 0.7px;
+  --gr-button-label-padding: 2px 8px;
   --gr-button-active-scale: 0.9722;
   --gr-button-radius: 1.25rem;
 }
@@ -241,6 +247,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: var(--gr-button-label-padding);
   position: relative;
   z-index: 1;
 }

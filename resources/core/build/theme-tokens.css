@@ -50,12 +50,18 @@
   --color-control-stroke:#8d969f;
   --color-control-hover-primary:rgba(188, 195, 208, 0.40);
   --color-control-hover-alternative:rgba(242, 243, 247, 0.12);
+  --color-control-blur:rgba(255, 255, 255, 0.08);
   --color-icon-primary:#1d2023;
   --color-icon-secondary:#8d969f;
   --color-icon-tertiary:#bbc1c7;
   --color-premium:linear-gradient(48deg, #9BD5FF 6.25%, #9B93FF 44.27%, #9A8DFF 58.33%, #7C86FE 84.9%);
   --blend-hover:multiply;
   --blend-hover-inverted:normal;
+  --shadow-lowest:0 0 6px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-low:0 0 16px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-middle:0 4px 24px rgba(0, 0, 0, 0.12), 0 8px 16px rgba(0, 0, 0, 0.08);
+  --shadow-upper-middle:0 -2px 24px rgba(0, 0, 0, 0.08), 0 -8px 24px rgba(0, 0, 0, 0.1);
+  --shadow-high:0 4px 24px rgba(0, 0, 0, 0.12), 0 12px 20px rgba(0, 0, 0, 0.14);
 }
 
 .mts-theme-dark,
@@ -110,10 +116,16 @@
   --color-control-stroke:#636b72;
   --color-control-hover-primary:rgba(188, 195, 208, 0.40);
   --color-control-hover-alternative:rgba(188, 195, 208, 0.40);
+  --color-control-blur:rgba(255, 255, 255, 0.08);
   --color-icon-primary:#fafafa;
   --color-icon-secondary:#969fa8;
   --color-icon-tertiary:#626c77;
   --color-premium:linear-gradient(48deg, #9BD5FF 6.25%, #9B93FF 44.27%, #9A8DFF 58.33%, #7C86FE 84.9%);
   --blend-hover:normal;
   --blend-hover-inverted:multiply;
+  --shadow-lowest:0 0 6px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-low:0 0 16px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-middle:0 4px 24px rgba(0, 0, 0, 0.12), 0 8px 16px rgba(0, 0, 0, 0.08);
+  --shadow-upper-middle:0 -2px 24px rgba(0, 0, 0, 0.08), 0 -8px 24px rgba(0, 0, 0, 0.1);
+  --shadow-high:0 4px 24px rgba(0, 0, 0, 0.12), 0 12px 20px rgba(0, 0, 0, 0.14);
 }

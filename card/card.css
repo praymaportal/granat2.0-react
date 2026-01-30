@@ -1,0 +1,47 @@
+.gr-card {
+  --gr-card-radius: 24px;
+  --gr-card-padding: 24px;
+  --gr-card-bg: var(--color-background-primary-elevated, #ffffff);
+  --gr-card-border: none;
+  --gr-card-shadow: var(--shadow-low);
+  --gr-card-backdrop: none;
+
+  display: block;
+  box-sizing: border-box;
+  border-radius: var(--gr-card-radius);
+  padding: var(--gr-card-padding);
+  background: var(--gr-card-bg);
+  border: var(--gr-card-border);
+  box-shadow: var(--gr-card-shadow);
+  -webkit-backdrop-filter: var(--gr-card-backdrop);
+  backdrop-filter: var(--gr-card-backdrop);
+  color: var(--color-text-primary, #1d2023);
+  overflow: hidden;
+}
+
+.gr-card--default {
+  --gr-card-bg: var(--color-background-primary-elevated, #ffffff);
+  --gr-card-shadow: var(--shadow-low);
+}
+
+.gr-card--default-no-shadow {
+  --gr-card-bg: var(--color-background-secondary, #f2f3f7);
+  --gr-card-shadow: none;
+}
+
+.gr-card--grey {
+  --gr-card-bg: var(--color-background-secondary-elevated, #ffffff);
+  --gr-card-shadow: none;
+}
+
+.gr-card--transparent {
+  --gr-card-bg: var(--color-control-blur, rgba(255, 255, 255, 0.08));
+  --gr-card-shadow: none;
+  --gr-card-backdrop: blur(40px);
+}
+
+.gr-card--outline {
+  --gr-card-bg: var(--color-background-primary, #ffffff);
+  --gr-card-border: 1px solid var(--color-background-stroke, rgba(188, 195, 208, 0.5));
+  --gr-card-shadow: none;
+}
