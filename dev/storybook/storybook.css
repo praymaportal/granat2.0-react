@@ -293,10 +293,16 @@ body {
   padding: 16px;
   border-radius: 18px;
   background: var(--color-background-primary, #ffffff);
+  align-items: center;
+  justify-content: center;
 }
 
 .sb-card-preview--secondary {
   background: var(--color-background-secondary, #f2f3f7);
+}
+
+.sb-card-preview--dark {
+  background: var(--color-background-inverted, #1d2023);
 }
 
 .sb-card-preview--blur {
@@ -313,10 +319,47 @@ body {
   min-height: 120px;
 }
 
+.sb-card-demo--image {
+  --gr-card-shadow-hover: none;
+  --gr-card-shadow-focus: none;
+  --gr-card-shadow-pressed: none;
+  --gr-card-translate-hover: 0px;
+  --gr-card-translate-focus: 0px;
+  --gr-card-translate-pressed: 0px;
+}
+
+.sb-card-media {
+  width: 100%;
+  height: 120px;
+  border-radius: inherit;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  transform: scale(1);
+  transition: transform 0.2s ease;
+}
+
+.sb-card-media--image {
+  background-image: url('../storybook/assets/Card-Background.png');
+}
+
+.gr-card--interactive:hover .sb-card-media--image,
+.gr-card--interactive:focus-visible .sb-card-media--image {
+  transform: scale(1.1);
+}
+
+.gr-card--interactive:active .sb-card-media--image {
+  transform: scale(1);
+}
+
 .sb-card-content {
   font-family: 'MTS Compact', 'MTS Text', sans-serif;
   font-size: 14px;
   color: var(--color-text-secondary, #626c77);
+}
+
+.sb-card-preview--dark .sb-card-content {
+  color: var(--color-text-inverted, #fafafa);
 }
 
 .sb-card-shadow-grid {
@@ -343,6 +386,60 @@ body {
   font-family: 'MTS Compact', 'MTS Text', sans-serif;
   font-size: 14px;
   color: var(--color-text-secondary, #626c77);
+}
+
+.sb-card-size-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.sb-card-size-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sb-card-size-item .gr-card {
+  min-height: 200px;
+}
+
+.sb-card-size-label {
+  font-family: 'MTS Compact', 'MTS Text', sans-serif;
+  font-size: 14px;
+  color: var(--color-text-secondary, #626c77);
+}
+
+.sb-card-state-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sb-card-state-row {
+  display: grid;
+  grid-template-columns: 160px repeat(4, minmax(180px, 1fr));
+  gap: 12px;
+  align-items: center;
+}
+
+.sb-card-state-row--header {
+  align-items: end;
+}
+
+.sb-card-state-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.sb-card-state-cell--label {
+  min-height: auto;
+  justify-content: flex-start;
+  font-family: 'MTS Compact', 'MTS Text', sans-serif;
+  font-size: 15px;
+  color: var(--color-text-primary, #1d2023);
 }
 
 .sb-shadow-lowest {

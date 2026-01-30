@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import '../resources/core/build/all.css';
 import '../resources/core/build/theme-tokens.css';
+import '../resources/core/build/border-radius.css';
 import '../resources/base/build/styles/main.css';
 import '../resources/base/build/styles/typography-v3.css';
 import './storybook/storybook.css';

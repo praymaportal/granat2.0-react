@@ -1,10 +1,18 @@
 .gr-card {
-  --gr-card-radius: 24px;
-  --gr-card-padding: 24px;
+  --gr-card-radius: var(--radius-24, 24px);
+  --gr-card-padding: 16px;
   --gr-card-bg: var(--color-background-primary-elevated, #ffffff);
   --gr-card-border: none;
-  --gr-card-shadow: var(--shadow-low);
+  --gr-card-shadow-default: var(--shadow-low);
+  --gr-card-shadow-hover: var(--shadow-middle);
+  --gr-card-shadow-pressed: var(--shadow-low);
+  --gr-card-shadow-focus: var(--shadow-middle);
+  --gr-card-shadow: var(--gr-card-shadow-default);
   --gr-card-backdrop: none;
+  --gr-card-translate-hover: -4px;
+  --gr-card-translate-focus: -4px;
+  --gr-card-translate-pressed: 0px;
+  --gr-card-translate-y: 0px;
 
   display: block;
   box-sizing: border-box;
@@ -17,31 +25,138 @@
   backdrop-filter: var(--gr-card-backdrop);
   color: var(--color-text-primary, #1d2023);
   overflow: hidden;
+  transform: translateY(var(--gr-card-translate-y));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.gr-card--default {
+.gr-card--interactive {
+  cursor: pointer;
+}
+
+.gr-card--interactive:hover {
+  --gr-card-shadow: var(--gr-card-shadow-hover);
+  --gr-card-translate-y: var(--gr-card-translate-hover);
+}
+
+.gr-card--interactive:active {
+  --gr-card-shadow: var(--gr-card-shadow-pressed);
+  --gr-card-translate-y: var(--gr-card-translate-pressed);
+}
+
+.gr-card--interactive:focus-visible {
+  --gr-card-shadow: var(--gr-card-shadow-focus);
+  --gr-card-translate-y: var(--gr-card-translate-focus);
+  outline: none;
+}
+
+.gr-card--size-s {
+  --gr-card-radius: var(--radius-24, 24px);
+  --gr-card-padding: 16px;
+}
+
+.gr-card--size-m {
+  --gr-card-radius: var(--radius-32, 32px);
+  --gr-card-padding: 24px;
+}
+
+.gr-card--radius-32 {
+  --gr-card-radius: var(--radius-32, 32px);
+}
+
+.gr-card--radius-40 {
+  --gr-card-radius: var(--radius-40, 40px);
+}
+
+.gr-card--radius-48 {
+  --gr-card-radius: var(--radius-48, 48px);
+}
+
+.gr-card--radius-64 {
+  --gr-card-radius: var(--radius-64, 64px);
+}
+
+.gr-card--radius-80 {
+  --gr-card-radius: var(--radius-80, 80px);
+}
+
+.gr-card--elevated {
   --gr-card-bg: var(--color-background-primary-elevated, #ffffff);
-  --gr-card-shadow: var(--shadow-low);
+  --gr-card-shadow-default: var(--shadow-low);
+  --gr-card-shadow-hover: var(--shadow-middle);
+  --gr-card-shadow-focus: var(--shadow-middle);
+  --gr-card-shadow-pressed: var(--shadow-low);
 }
 
-.gr-card--default-no-shadow {
-  --gr-card-bg: var(--color-background-secondary, #f2f3f7);
-  --gr-card-shadow: none;
-}
-
-.gr-card--grey {
+.gr-card--secondary-elevated {
   --gr-card-bg: var(--color-background-secondary-elevated, #ffffff);
-  --gr-card-shadow: none;
+  --gr-card-shadow-default: none;
+  --gr-card-shadow-hover: var(--shadow-middle);
+  --gr-card-shadow-focus: var(--shadow-middle);
+  --gr-card-shadow-pressed: none;
 }
 
-.gr-card--transparent {
+.gr-card--secondary {
+  --gr-card-bg: var(--color-background-secondary, #f2f3f7);
+  --gr-card-shadow-default: none;
+  --gr-card-shadow-hover: none;
+  --gr-card-shadow-focus: none;
+  --gr-card-shadow-pressed: none;
+}
+
+.gr-card--blur {
   --gr-card-bg: var(--color-control-blur, rgba(255, 255, 255, 0.08));
-  --gr-card-shadow: none;
+  --gr-card-shadow-default: none;
+  --gr-card-shadow-hover: none;
+  --gr-card-shadow-focus: none;
+  --gr-card-shadow-pressed: none;
   --gr-card-backdrop: blur(40px);
 }
 
 .gr-card--outline {
   --gr-card-bg: var(--color-background-primary, #ffffff);
   --gr-card-border: 1px solid var(--color-background-stroke, rgba(188, 195, 208, 0.5));
-  --gr-card-shadow: none;
+  --gr-card-shadow-default: none;
+  --gr-card-shadow-hover: none;
+  --gr-card-shadow-focus: none;
+  --gr-card-shadow-pressed: none;
+}
+
+.gr-card--transparent {
+  --gr-card-bg: var(--color-control-blur, rgba(255, 255, 255, 0.08));
+  --gr-card-shadow-default: none;
+  --gr-card-shadow-hover: none;
+  --gr-card-shadow-focus: none;
+  --gr-card-shadow-pressed: none;
+}
+
+.gr-card--image {
+  --gr-card-bg: transparent;
+  --gr-card-padding: 0px;
+  --gr-card-shadow-default: none;
+  --gr-card-shadow-hover: none;
+  --gr-card-shadow-focus: none;
+  --gr-card-shadow-pressed: none;
+  --gr-card-translate-hover: 0px;
+  --gr-card-translate-focus: 0px;
+  --gr-card-translate-pressed: 0px;
+}
+
+.gr-card--state-default {
+  --gr-card-shadow: var(--gr-card-shadow-default);
+  --gr-card-translate-y: 0px;
+}
+
+.gr-card--state-hover {
+  --gr-card-shadow: var(--gr-card-shadow-hover);
+  --gr-card-translate-y: var(--gr-card-translate-hover);
+}
+
+.gr-card--state-pressed {
+  --gr-card-shadow: var(--gr-card-shadow-pressed);
+  --gr-card-translate-y: var(--gr-card-translate-pressed);
+}
+
+.gr-card--state-focus {
+  --gr-card-shadow: var(--gr-card-shadow-focus);
+  --gr-card-translate-y: var(--gr-card-translate-focus);
 }

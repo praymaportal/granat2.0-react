@@ -11,7 +11,7 @@
   --gr-button-hover-blend: var(--blend-hover, multiply);
   --gr-button-hover-opacity: 0;
   --gr-button-focus-opacity: 0;
-  --gr-button-radius: 1rem;
+  --gr-button-radius: var(--radius-16, 1rem);
   --gr-button-active-scale: 1;
 
   display: inline-flex;
@@ -106,7 +106,7 @@
   --gr-button-letter-spacing: 0.5px;
   --gr-button-label-padding: 2px 4px;
   --gr-button-active-scale: 0.9166;
-  --gr-button-radius: 0.5rem;
+  --gr-button-radius: var(--radius-8, 0.5rem);
 }
 
 .gr-button--32 {
@@ -118,7 +118,7 @@
   --gr-button-letter-spacing: 0.5px;
   --gr-button-label-padding: 2px 4px;
   --gr-button-active-scale: 0.9375;
-  --gr-button-radius: 0.75rem;
+  --gr-button-radius: var(--radius-12, 0.75rem);
 }
 
 .gr-button--44 {
@@ -130,7 +130,7 @@
   --gr-button-letter-spacing: 0.6px;
   --gr-button-label-padding: 4px 8px;
   --gr-button-active-scale: 0.9545;
-  --gr-button-radius: 1rem;
+  --gr-button-radius: var(--radius-16, 1rem);
 }
 
 .gr-button--52 {
@@ -142,7 +142,7 @@
   --gr-button-letter-spacing: 0.6px;
   --gr-button-label-padding: 4px 8px;
   --gr-button-active-scale: 0.9615;
-  --gr-button-radius: 1rem;
+  --gr-button-radius: var(--radius-16, 1rem);
 }
 
 .gr-button--72 {
@@ -154,7 +154,7 @@
   --gr-button-letter-spacing: 0.7px;
   --gr-button-label-padding: 2px 8px;
   --gr-button-active-scale: 0.9722;
-  --gr-button-radius: 1.25rem;
+  --gr-button-radius: var(--radius-20, 1.25rem);
 }
 
 .gr-button--primary {

@@ -2,7 +2,7 @@
   all: unset;
   --gr-icon-button-size: 52px;
   --gr-icon-button-icon-size: 24px;
-  --gr-icon-button-radius: 1rem;
+  --gr-icon-button-radius: var(--radius-16, 1rem);
   --gr-icon-button-bg: transparent;
   --gr-icon-button-color: var(--color-icon-primary, #1d2023);
   --gr-icon-button-hover-overlay: var(--color-background-hover, rgba(188, 195, 208, 0.25));
@@ -88,35 +88,35 @@
 .gr-icon-button--24 {
   --gr-icon-button-size: 24px;
   --gr-icon-button-icon-size: 16px;
-  --gr-icon-button-radius: 0.5rem;
+  --gr-icon-button-radius: var(--radius-8, 0.5rem);
   --gr-icon-button-active-scale: 0.9166;
 }
 
 .gr-icon-button--32 {
   --gr-icon-button-size: 32px;
   --gr-icon-button-icon-size: 16px;
-  --gr-icon-button-radius: 0.75rem;
+  --gr-icon-button-radius: var(--radius-12, 0.75rem);
   --gr-icon-button-active-scale: 0.9375;
 }
 
 .gr-icon-button--44 {
   --gr-icon-button-size: 44px;
   --gr-icon-button-icon-size: 24px;
-  --gr-icon-button-radius: 1rem;
+  --gr-icon-button-radius: var(--radius-16, 1rem);
   --gr-icon-button-active-scale: 0.9545;
 }
 
 .gr-icon-button--52 {
   --gr-icon-button-size: 52px;
   --gr-icon-button-icon-size: 24px;
-  --gr-icon-button-radius: 1rem;
+  --gr-icon-button-radius: var(--radius-16, 1rem);
   --gr-icon-button-active-scale: 0.9615;
 }
 
 .gr-icon-button--72 {
   --gr-icon-button-size: 72px;
   --gr-icon-button-icon-size: 24px;
-  --gr-icon-button-radius: 1.25rem;
+  --gr-icon-button-radius: var(--radius-20, 1.25rem);
   --gr-icon-button-active-scale: 0.9722;
 }
 
