@@ -1,0 +1,84 @@
+.gr-counter {
+  --gr-counter-bg: var(--color-accent-notification, #ff0032);
+  --gr-counter-color: var(--color-constant-greyscale-0, #ffffff);
+  --gr-counter-height: 24px;
+  --gr-counter-padding-x: 7px;
+  --gr-counter-radius: 100px;
+  --gr-counter-font-size: 14px;
+  --gr-counter-line-height: 20px;
+  --gr-counter-min-width: 10px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--gr-counter-height);
+  min-width: calc(var(--gr-counter-min-width) + var(--gr-counter-padding-x) * 2);
+  padding: 0 var(--gr-counter-padding-x);
+  border-radius: var(--gr-counter-radius);
+  background: var(--gr-counter-bg);
+  color: var(--gr-counter-color);
+  font-family: 'MTS Compact', sans-serif;
+  font-weight: 500;
+  font-size: var(--gr-counter-font-size);
+  line-height: var(--gr-counter-line-height);
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.gr-counter--notification {
+  min-width: 6px;
+  min-height: 6px;
+  width: 6px;
+  height: 6px;
+  padding: 0;
+}
+
+.gr-counter--secondary {
+  --gr-counter-bg: var(--color-background-secondary, #f2f3f7);
+  --gr-counter-color: var(--color-text-primary, #1d2023);
+}
+
+.gr-counter--on-secondary.gr-counter--secondary {
+  --gr-counter-bg: var(--color-background-secondary-elevated, #ffffff);
+}
+
+.gr-counter--primary {
+  --gr-counter-bg: var(--color-accent-notification, #ff0032);
+  --gr-counter-color: var(--color-constant-greyscale-0, #ffffff);
+}
+
+.gr-counter--inverted {
+  --gr-counter-bg: var(--color-control-secondary-active, #1d2023);
+  --gr-counter-color: var(--color-text-inverted, #fafafa);
+}
+
+.gr-counter--16 {
+  --gr-counter-height: 16px;
+  --gr-counter-padding-x: 4px;
+  --gr-counter-font-size: 12px;
+  --gr-counter-line-height: 16px;
+  --gr-counter-min-width: 8px;
+}
+
+.gr-counter--20 {
+  --gr-counter-height: 20px;
+  --gr-counter-padding-x: 6px;
+  --gr-counter-font-size: 12px;
+  --gr-counter-line-height: 16px;
+  --gr-counter-min-width: 8px;
+}
+
+.gr-counter--24 {
+  --gr-counter-height: 24px;
+  --gr-counter-padding-x: 7px;
+  --gr-counter-font-size: 14px;
+  --gr-counter-line-height: 20px;
+  --gr-counter-min-width: 10px;
+}
+
+.gr-counter__value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--gr-counter-min-width);
+}

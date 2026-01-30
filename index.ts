@@ -10,6 +10,14 @@ export type {
   BadgeSurface,
   BadgeIconPosition
 } from './badge';
+export { Counter } from './counter';
+export type {
+  CounterProps,
+  CounterSize,
+  CounterType,
+  CounterSurface,
+  CounterKind
+} from './counter';
 export { Card } from './card';
 export type { CardProps, CardVariant } from './card';
 export { Spinner } from './spinner';

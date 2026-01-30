@@ -5,6 +5,8 @@
   --gr-badge-height: 24px;
   --gr-badge-padding-x: 6px;
   --gr-badge-padding-y: 2px;
+  --gr-badge-padding-top: calc(var(--gr-badge-padding-y) + 1px);
+  --gr-badge-padding-bottom: calc(var(--gr-badge-padding-y) - 1px);
   --gr-badge-radius: var(--radius-8, 8px);
   --gr-badge-gap: 4px;
   --gr-badge-font-size: 14px;
@@ -16,7 +18,8 @@
   justify-content: center;
   gap: var(--gr-badge-gap);
   min-height: var(--gr-badge-height);
-  padding: var(--gr-badge-padding-y) var(--gr-badge-padding-x);
+  height: var(--gr-badge-height);
+  padding: var(--gr-badge-padding-top) var(--gr-badge-padding-x) var(--gr-badge-padding-bottom);
   border-radius: var(--gr-badge-radius);
   background: var(--gr-badge-bg);
   color: var(--gr-badge-text-color);
