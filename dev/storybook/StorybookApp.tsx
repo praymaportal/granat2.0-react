@@ -12,6 +12,8 @@ import BadgeStory from '../stories/Badge.story';
 import BadgePropsStory from '../stories/BadgeProps.story';
 import CounterStory from '../stories/Counter.story';
 import CounterPropsStory from '../stories/CounterProps.story';
+import AvatarStory from '../stories/Avatar.story';
+import AvatarPropsStory from '../stories/AvatarProps.story';
 
 const navItems = [
   {
@@ -36,6 +38,14 @@ const navItems = [
     children: [
       { id: 'badge-all', label: 'all vars' },
       { id: 'badge-props', label: 'badge props' }
+    ]
+  },
+  {
+    id: 'avatar',
+    label: 'avatar',
+    children: [
+      { id: 'avatar-all', label: 'all vars' },
+      { id: 'avatar-props', label: 'avatar props' }
     ]
   },
   {
@@ -71,6 +81,8 @@ const storyMap = {
   'icon-button-props': <IconButtonPropsStory />,
   'badge-all': <BadgeStory />,
   'badge-props': <BadgePropsStory />,
+  'avatar-all': <AvatarStory />,
+  'avatar-props': <AvatarPropsStory />,
   'counter-all': <CounterStory />,
   'counter-props': <CounterPropsStory />,
   'card-all': <CardStory />,

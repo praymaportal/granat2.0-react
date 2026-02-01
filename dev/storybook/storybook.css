@@ -435,6 +435,90 @@ body {
   align-items: center;
 }
 
+.sb-avatar-type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.sb-avatar-type-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.sb-avatar-type-label {
+  font-family: 'MTS Compact', 'MTS Text', sans-serif;
+  font-size: 14px;
+  color: var(--color-text-secondary, #626c77);
+}
+
+.sb-avatar-size-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+
+.sb-avatar-size-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.sb-avatar-size-label {
+  font-family: 'MTS Compact', 'MTS Text', sans-serif;
+  font-size: 14px;
+  color: var(--color-text-secondary, #626c77);
+}
+
+.sb-avatar-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.sb-avatar-surface-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.sb-avatar-surface-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sb-avatar-surface-label {
+  font-family: 'MTS Compact', 'MTS Text', sans-serif;
+  font-size: 14px;
+  color: var(--color-text-secondary, #626c77);
+}
+
+.sb-avatar-surface {
+  min-height: 120px;
+  border-radius: 20px;
+  border: 1px dashed rgba(120, 133, 150, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sb-avatar-surface--primary {
+  background: var(--color-background-primary, #ffffff);
+}
+
+.sb-avatar-surface--secondary {
+  background: var(--color-background-secondary, #f2f3f7);
+}
+
+.sb-avatar-surface--dark {
+  background: var(--color-background-inverted, #1d2023);
+}
+
 .sb-story-stack {
   display: flex;
   flex-direction: column;

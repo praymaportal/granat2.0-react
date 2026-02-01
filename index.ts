@@ -22,3 +22,5 @@ export { Card } from './card';
 export type { CardProps, CardVariant } from './card';
 export { Spinner } from './spinner';
 export type { SpinnerProps, SpinnerSize, SpinnerVariant, SpinnerSpeed } from './spinner';
+export { Avatar } from './avatar';
+export type { AvatarProps, AvatarSize, AvatarType } from './avatar';
