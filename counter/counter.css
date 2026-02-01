@@ -3,6 +3,8 @@
   --gr-counter-color: var(--color-constant-greyscale-0, #ffffff);
   --gr-counter-height: 24px;
   --gr-counter-padding-x: 7px;
+  --gr-counter-padding-top: 1px;
+  --gr-counter-padding-bottom: 0px;
   --gr-counter-radius: 100px;
   --gr-counter-font-size: 14px;
   --gr-counter-line-height: 20px;
@@ -12,8 +14,10 @@
   align-items: center;
   justify-content: center;
   min-height: var(--gr-counter-height);
+  height: var(--gr-counter-height);
   min-width: calc(var(--gr-counter-min-width) + var(--gr-counter-padding-x) * 2);
-  padding: 0 var(--gr-counter-padding-x);
+  padding: var(--gr-counter-padding-top) var(--gr-counter-padding-x)
+    var(--gr-counter-padding-bottom);
   border-radius: var(--gr-counter-radius);
   background: var(--gr-counter-bg);
   color: var(--gr-counter-color);
@@ -26,6 +30,10 @@
 }
 
 .gr-counter--notification {
+  --gr-counter-height: 6px;
+  --gr-counter-padding-x: 0px;
+  --gr-counter-padding-top: 0px;
+  --gr-counter-padding-bottom: 0px;
   min-width: 6px;
   min-height: 6px;
   width: 6px;
