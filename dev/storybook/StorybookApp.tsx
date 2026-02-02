@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Sidebar from './components/Sidebar';
 import ButtonStory from '../stories/Button.story';
 import ButtonPropsStory from '../stories/ButtonProps.story';
@@ -14,6 +14,8 @@ import CounterStory from '../stories/Counter.story';
 import CounterPropsStory from '../stories/CounterProps.story';
 import AvatarStory from '../stories/Avatar.story';
 import AvatarPropsStory from '../stories/AvatarProps.story';
+import LinkStory from '../stories/Link.story';
+import LinkPropsStory from '../stories/LinkProps.story';
 
 const navItems = [
   {
@@ -46,6 +48,14 @@ const navItems = [
     children: [
       { id: 'avatar-all', label: 'all vars' },
       { id: 'avatar-props', label: 'avatar props' }
+    ]
+  },
+  {
+    id: 'link',
+    label: 'link',
+    children: [
+      { id: 'link-all', label: 'all vars' },
+      { id: 'link-props', label: 'link props' }
     ]
   },
   {
@@ -83,6 +93,8 @@ const storyMap = {
   'badge-props': <BadgePropsStory />,
   'avatar-all': <AvatarStory />,
   'avatar-props': <AvatarPropsStory />,
+  'link-all': <LinkStory />,
+  'link-props': <LinkPropsStory />,
   'counter-all': <CounterStory />,
   'counter-props': <CounterPropsStory />,
   'card-all': <CardStory />,
@@ -94,7 +106,31 @@ const storyMap = {
 type StoryId = keyof typeof storyMap;
 
 export default function StorybookApp() {
-  const [activeId, setActiveId] = useState<StoryId>('button-all');
+  const [activeId, setActiveId] = useState<StoryId>(() => {
+    if (typeof window === 'undefined') {
+      return 'button-all';
+    }
+    try {
+      const stored = window.localStorage.getItem('granat-storybook-active');
+      if (stored && stored in storyMap) {
+        return stored as StoryId;
+      }
+    } catch {
+      // ignore storage errors
+    }
+    return 'button-all';
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    try {
+      window.localStorage.setItem('granat-storybook-active', activeId);
+    } catch {
+      // ignore storage errors
+    }
+  }, [activeId]);
 
   return (
     <div className="sb-shell">

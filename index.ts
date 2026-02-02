@@ -24,3 +24,11 @@ export { Spinner } from './spinner';
 export type { SpinnerProps, SpinnerSize, SpinnerVariant, SpinnerSpeed } from './spinner';
 export { Avatar } from './avatar';
 export type { AvatarProps, AvatarSize, AvatarType } from './avatar';
+export { Link } from './link';
+export type {
+  LinkProps,
+  LinkSize,
+  LinkTone,
+  LinkUnderline,
+  LinkIconPosition
+} from './link';

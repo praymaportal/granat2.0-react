@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 type NavItem = {
   id: string;
@@ -13,10 +13,16 @@ type SidebarProps = {
 };
 
 export default function Sidebar({ items, activeId, onSelect }: SidebarProps) {
-  const groupIds = useMemo(() => items.map((item) => item.id), [items]);
-  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(
-    () => new Set(groupIds)
-  );
+  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(() => {
+    const next = new Set<string>();
+    const activeGroup = items.find((item) =>
+      item.children?.some((child) => child.id === activeId)
+    );
+    if (activeGroup) {
+      next.add(activeGroup.id);
+    }
+    return next;
+  });
 
   const toggleGroup = (id: string) => {
     setExpandedGroups((prev) => {

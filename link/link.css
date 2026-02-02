@@ -1,0 +1,165 @@
+.gr-link {
+  --gr-link-color: var(--color-text-primary-link, #0070e5);
+  --gr-link-line-opacity: 0;
+  --gr-link-hover-line-opacity: 1;
+  --gr-link-underline-bg: transparent;
+  --gr-link-underline-bg-hover: currentColor;
+  --gr-link-underline-bg-size: 100% var(--gr-link-underline-thickness);
+  --gr-link-underline-repeat: no-repeat;
+  --gr-link-underline-thickness: 1px;
+  --gr-link-underline-offset: 2px;
+  --gr-link-font-size: 12px;
+  --gr-link-line-height: 16px;
+  --gr-link-gap: 2px;
+  --gr-link-icon-size: 16px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gr-link-gap);
+  font-family: 'MTS Compact', sans-serif;
+  font-weight: 400;
+  font-size: var(--gr-link-font-size);
+  line-height: var(--gr-link-line-height);
+  color: var(--gr-link-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.gr-link:hover,
+.gr-link:focus,
+.gr-link:active,
+.gr-link:visited {
+  text-decoration: none;
+}
+
+.gr-link__label {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+}
+
+.gr-link__label::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(-1 * var(--gr-link-underline-offset));
+  height: var(--gr-link-underline-thickness);
+  background-image: var(--gr-link-underline-bg);
+  background-size: var(--gr-link-underline-bg-size);
+  background-repeat: var(--gr-link-underline-repeat);
+  opacity: var(--gr-link-line-opacity);
+  pointer-events: none;
+}
+
+.gr-link:hover .gr-link__label::after {
+  background-image: var(--gr-link-underline-bg-hover);
+  opacity: var(--gr-link-hover-line-opacity);
+}
+
+.gr-link:visited {
+  color: var(--gr-link-color);
+}
+
+.gr-link:visited .gr-link__label {
+  color: inherit;
+}
+
+.gr-link--underline-none {
+  --gr-link-line-opacity: 0;
+  --gr-link-hover-line-opacity: 1;
+  --gr-link-underline-bg: transparent;
+  --gr-link-underline-bg-hover: currentColor;
+}
+
+.gr-link--underline-solid {
+  --gr-link-line-opacity: 1;
+  --gr-link-hover-line-opacity: 0;
+  --gr-link-underline-bg: currentColor;
+  --gr-link-underline-bg-hover: transparent;
+  --gr-link-underline-bg-size: 100% var(--gr-link-underline-thickness);
+  --gr-link-underline-repeat: no-repeat;
+}
+
+.gr-link--underline-dotted {
+  --gr-link-line-opacity: 1;
+  --gr-link-hover-line-opacity: 0;
+  --gr-link-underline-bg: repeating-linear-gradient(
+    to right,
+    currentColor 0 4px,
+    transparent 4px 8px
+  );
+  --gr-link-underline-bg-hover: transparent;
+  --gr-link-underline-bg-size: auto;
+  --gr-link-underline-repeat: repeat-x;
+}
+
+.gr-link--tone-primary {
+  --gr-link-color: var(--color-text-primary-link, #0070e5);
+}
+
+.gr-link--tone-secondary {
+  --gr-link-color: var(--color-text-secondary-link, #626c77);
+}
+
+.gr-link--tone-black {
+  --gr-link-color: var(--color-text-primary, #1d2023);
+}
+
+.gr-link--tone-white {
+  --gr-link-color: var(--color-text-inverted, #fafafa);
+}
+
+.gr-link--16 {
+  --gr-link-font-size: 12px;
+  --gr-link-line-height: 16px;
+  --gr-link-gap: 2px;
+}
+
+.gr-link--20 {
+  --gr-link-font-size: 14px;
+  --gr-link-line-height: 20px;
+  --gr-link-gap: 4px;
+}
+
+.gr-link--24 {
+  --gr-link-font-size: 17px;
+  --gr-link-line-height: 24px;
+  --gr-link-gap: 4px;
+}
+
+.gr-link__icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--gr-link-icon-size);
+  height: var(--gr-link-icon-size);
+  flex-shrink: 0;
+}
+
+.gr-link__icon-wrap > * {
+  width: 100%;
+  height: 100%;
+}
+
+.gr-link__icon--calendar,
+.gr-link__icon--external {
+  display: block;
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+
+.gr-link__icon--calendar {
+  mask-image: url('../icons/web2/calendar/size-16-style-outline.svg');
+  -webkit-mask-image: url('../icons/web2/calendar/size-16-style-outline.svg');
+}
+
+.gr-link__icon--external {
+  mask-image: url('../icons/web2/open-in-new/size-16-style-outline.svg');
+  -webkit-mask-image: url('../icons/web2/open-in-new/size-16-style-outline.svg');
+}
