@@ -32,3 +32,5 @@ export type {
   LinkUnderline,
   LinkIconPosition
 } from './link';
+export { Label } from './label';
+export type { LabelProps, LabelSize, LabelState } from './label';
