@@ -6,7 +6,7 @@ type Variant = {
   id: string;
   label: string;
   underline: LinkUnderline;
-  iconType?: 'calendar' | 'external';
+  iconType?: 'custom' | 'external';
   iconPosition?: 'left' | 'right';
 };
 
@@ -29,13 +29,13 @@ const variants: Variant[] = [
   { id: 'default', label: 'Link', underline: 'none' },
   { id: 'underline-solid', label: 'Link w straight line', underline: 'solid' },
   { id: 'underline-dotted', label: 'Link w dotted line', underline: 'dotted' },
-  { id: 'external', label: 'Link External', underline: 'none', iconType: 'external' },
-  { id: 'icon-right', label: 'Link w right icon', underline: 'none', iconType: 'calendar', iconPosition: 'right' },
-  { id: 'icon-left', label: 'Link w left icon', underline: 'none', iconType: 'calendar', iconPosition: 'left' }
+  { id: 'external', label: 'Link External', underline: 'none', iconType: 'external', iconPosition: 'right' },
+  { id: 'icon-right', label: 'Link w right icon', underline: 'none', iconType: 'custom', iconPosition: 'right' },
+  { id: 'icon-left', label: 'Link w left icon', underline: 'none', iconType: 'custom', iconPosition: 'left' }
 ];
 
 const iconMap = {
-  calendar: <span className="gr-link__icon gr-link__icon--calendar" aria-hidden="true" />,
+  custom: <span className="gr-link__icon gr-link__icon--custom" aria-hidden="true" />,
   external: <span className="gr-link__icon gr-link__icon--external" aria-hidden="true" />
 };
 

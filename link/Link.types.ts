@@ -16,4 +16,5 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   underline?: LinkUnderline;
   icon?: ReactNode;
   iconPosition?: LinkIconPosition;
+  noVisited?: boolean;
 }

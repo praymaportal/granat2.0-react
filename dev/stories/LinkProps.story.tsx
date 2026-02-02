@@ -3,13 +3,13 @@ import { Link } from '../../link';
 import type { LinkIconPosition, LinkSize, LinkTone, LinkUnderline } from '../../link';
 import StorySection from '../storybook/components/StorySection';
 
-type IconType = 'none' | 'calendar' | 'external';
+type IconType = 'none' | 'custom' | 'external';
 
 const sizeOptions: LinkSize[] = [16, 20, 24];
 const toneOptions: LinkTone[] = ['primary', 'secondary', 'black', 'white'];
 const underlineOptions: LinkUnderline[] = ['none', 'solid', 'dotted'];
 const iconMap = {
-  calendar: <span className="gr-link__icon gr-link__icon--calendar" aria-hidden="true" />,
+  custom: <span className="gr-link__icon gr-link__icon--custom" aria-hidden="true" />,
   external: <span className="gr-link__icon gr-link__icon--external" aria-hidden="true" />
 };
 
@@ -17,6 +17,7 @@ export default function LinkPropsStory() {
   const [text, setText] = useState('Link');
   const [href, setHref] = useState('#');
   const [target, setTarget] = useState<'_self' | '_blank'>('_self');
+  const [noVisited, setNoVisited] = useState(false);
   const [size, setSize] = useState<LinkSize>(16);
   const [tone, setTone] = useState<LinkTone>('primary');
   const [underline, setUnderline] = useState<LinkUnderline>('none');
@@ -24,6 +25,7 @@ export default function LinkPropsStory() {
   const [iconPosition, setIconPosition] = useState<LinkIconPosition>('right');
 
   const icon = iconType === 'none' ? undefined : iconMap[iconType];
+  const resolvedIconPosition = iconType === 'external' ? 'right' : iconPosition;
 
   return (
     <StorySection id="link-props" title="link props" description="Интерактивные настройки ссылки.">
@@ -37,11 +39,12 @@ export default function LinkPropsStory() {
             <Link
               href={href}
               target={target}
+              noVisited={noVisited}
               size={size}
               tone={tone}
               underline={underline}
               icon={icon}
-              iconPosition={iconPosition}
+              iconPosition={resolvedIconPosition}
             >
               {text}
             </Link>
@@ -78,6 +81,15 @@ export default function LinkPropsStory() {
                 <option value="_self">_self</option>
                 <option value="_blank">_blank</option>
               </select>
+            </div>
+            <div className="sb-control-row">
+              <span className="sb-control-label">no visited</span>
+              <input
+                className="sb-control-checkbox"
+                type="checkbox"
+                checked={noVisited}
+                onChange={(event) => setNoVisited(event.target.checked)}
+              />
             </div>
             <div className="sb-control-row">
               <span className="sb-control-label">tone</span>
@@ -132,11 +144,11 @@ export default function LinkPropsStory() {
                 onChange={(event) => setIconType(event.target.value as IconType)}
               >
                 <option value="none">none</option>
-                <option value="calendar">calendar</option>
+                <option value="custom">custom</option>
                 <option value="external">external</option>
               </select>
             </div>
-            {iconType !== 'none' ? (
+            {iconType !== 'none' && iconType !== 'external' ? (
               <div className="sb-control-row">
                 <span className="sb-control-label">icon position</span>
                 <select

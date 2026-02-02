@@ -33,6 +33,7 @@ export function Link({
   underline = DEFAULT_UNDERLINE,
   icon,
   iconPosition = DEFAULT_ICON_POSITION,
+  noVisited = false,
   className,
   ...rest
 }: LinkProps) {
@@ -48,7 +49,8 @@ export function Link({
         UNDERLINE_CLASS_MAP[underline],
         {
           'gr-link--with-icon': hasIcon,
-          'gr-link--icon-left': hasIcon && iconPosition === 'left'
+          'gr-link--icon-left': hasIcon && iconPosition === 'left',
+          'gr-link--no-visited': noVisited
         },
         className
       )}
