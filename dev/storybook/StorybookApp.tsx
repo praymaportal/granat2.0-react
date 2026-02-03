@@ -20,6 +20,8 @@ import LabelStory from '../stories/Label.story';
 import LabelPropsStory from '../stories/LabelProps.story';
 import DescriptionStory from '../stories/Description.story';
 import DescriptionPropsStory from '../stories/DescriptionProps.story';
+import InputStory from '../stories/Input.story';
+import InputPropsStory from '../stories/InputProps.story';
 
 const navItems = [
   {
@@ -79,6 +81,14 @@ const navItems = [
     ]
   },
   {
+    id: 'input',
+    label: 'input',
+    children: [
+      { id: 'input-all', label: 'all vars' },
+      { id: 'input-props', label: 'input props' }
+    ]
+  },
+  {
     id: 'counter',
     label: 'counter',
     children: [
@@ -119,6 +129,8 @@ const storyMap = {
   'label-props': <LabelPropsStory />,
   'description-all': <DescriptionStory />,
   'description-props': <DescriptionPropsStory />,
+  'input-all': <InputStory />,
+  'input-props': <InputPropsStory />,
   'counter-all': <CounterStory />,
   'counter-props': <CounterPropsStory />,
   'card-all': <CardStory />,

@@ -495,6 +495,30 @@ body {
   align-items: center;
 }
 
+.sb-input-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sb-input-row {
+  display: grid;
+  grid-template-columns: 220px minmax(240px, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.sb-input-label {
+  font-family: 'MTS Compact', 'MTS Text', sans-serif;
+  font-size: 14px;
+  color: var(--color-text-secondary, #626c77);
+}
+
+.sb-input-field {
+  display: flex;
+  align-items: center;
+}
+
 .sb-avatar-type-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -1087,6 +1111,14 @@ body {
   }
 
   .sb-description-label {
+    grid-column: 1 / -1;
+  }
+
+  .sb-input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sb-input-label {
     grid-column: 1 / -1;
   }
 

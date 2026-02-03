@@ -1,0 +1,148 @@
+.gr-input {
+  --gr-input-bg: var(--color-background-secondary, #f2f3f7);
+  --gr-input-border: var(--color-background-stroke, rgba(188, 195, 208, 0.5));
+  --gr-input-border-hover: var(--color-control-secondary-active, #1d2023);
+  --gr-input-border-focus: var(--color-accent-active, #007cff);
+  --gr-input-text-color: var(--color-text-primary, #1d2023);
+  --gr-input-placeholder-color: var(--color-text-secondary, #626c77);
+  --gr-input-icon-color: var(--color-icon-secondary, #8d969f);
+  --gr-input-height: 44px;
+  --gr-input-radius: var(--radius-16, 16px);
+  --gr-input-padding-x: 12px;
+  --gr-input-padding-y: 10px;
+  --gr-input-gap: 8px;
+  --gr-input-icon-size: 24px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gr-input-gap);
+  width: 100%;
+  height: var(--gr-input-height);
+  border-radius: var(--gr-input-radius);
+  border: 1px solid var(--gr-input-border);
+  background: var(--gr-input-bg);
+  box-sizing: border-box;
+  color: var(--gr-input-text-color);
+}
+
+.gr-input:hover:not(.gr-input--disabled) {
+  border-color: var(--gr-input-border-hover);
+}
+
+.gr-input:focus-within:not(.gr-input--disabled) {
+  border-color: var(--gr-input-border-focus);
+}
+
+.gr-input__field {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: var(--gr-input-padding-y) var(--gr-input-padding-x);
+  box-sizing: border-box;
+  font-family: 'MTS Compact', sans-serif;
+  font-size: 17px;
+  line-height: 24px;
+  color: var(--gr-input-text-color);
+}
+
+.gr-input--with-icon .gr-input__field {
+  padding-right: 0;
+}
+
+.gr-input__field::placeholder {
+  color: var(--gr-input-placeholder-color);
+}
+
+.gr-input__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: var(--gr-input-padding-y) var(--gr-input-padding-x) var(--gr-input-padding-y) 0;
+  box-sizing: border-box;
+  color: var(--gr-input-icon-color);
+}
+
+.gr-input__icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 var(--gr-input-padding-x) 0 0;
+  box-sizing: border-box;
+}
+
+.gr-input__icon-symbol {
+  width: var(--gr-input-icon-size);
+  height: var(--gr-input-icon-size);
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+
+.gr-input__icon-symbol--warning {
+  color: var(--color-accent-negative, #f95721);
+  mask-image: url('../icons/web2/warning-circle/size-24-style-fill.svg');
+  -webkit-mask-image: url('../icons/web2/warning-circle/size-24-style-fill.svg');
+}
+
+.gr-input__icon-symbol--check {
+  color: var(--color-accent-positive, #26cd58);
+  mask-image: url('../icons/web2/check-circle/size-24-style-fill.svg');
+  -webkit-mask-image: url('../icons/web2/check-circle/size-24-style-fill.svg');
+}
+
+.gr-input__icon-symbol--info {
+  mask-image: url('../icons/web2/info-circle/size-24-style-fill.svg');
+  -webkit-mask-image: url('../icons/web2/info-circle/size-24-style-fill.svg');
+}
+
+.gr-input__icon-symbol--lock {
+  mask-image: url('../icons/web2/lock/size-24-style-fill.svg');
+  -webkit-mask-image: url('../icons/web2/lock/size-24-style-fill.svg');
+}
+
+.gr-input__icon-button-symbol {
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+
+.gr-input__icon-button-symbol--cross {
+  mask-image: url('../icons/web2/cross-circle/size-16-style-fill.svg');
+  -webkit-mask-image: url('../icons/web2/cross-circle/size-16-style-fill.svg');
+}
+
+.gr-input--disabled {
+  cursor: not-allowed;
+}
+
+.gr-input--valid-error {
+  --gr-input-border: var(--color-accent-negative, #f95721);
+}
+
+.gr-input--valid-success {
+  /* keep default border/hover/focus */
+}
+
+.gr-input--disabled {
+  --gr-input-bg: var(--color-background-disabled, #f8f8fb);
+  --gr-input-border: var(--color-background-stroke-disabled, rgba(188, 195, 208, 0.25));
+  --gr-input-border-hover: var(--color-background-stroke-disabled, rgba(188, 195, 208, 0.25));
+  --gr-input-border-focus: var(--color-background-stroke-disabled, rgba(188, 195, 208, 0.25));
+  --gr-input-text-color: var(--color-text-secondary, #626c77);
+  --gr-input-placeholder-color: var(--color-text-secondary, #626c77);
+}

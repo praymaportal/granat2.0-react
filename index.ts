@@ -36,3 +36,5 @@ export { Label } from './label';
 export type { LabelProps, LabelSize, LabelState } from './label';
 export { Description } from './description';
 export type { DescriptionProps, DescriptionState } from './description';
+export { Input } from './input';
+export type { InputProps, InputValidationState } from './input';
