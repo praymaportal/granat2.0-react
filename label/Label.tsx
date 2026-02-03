@@ -6,7 +6,6 @@ import './label.css';
 const DEFAULT_SIZE: LabelSize = 'other';
 const DEFAULT_STATE: LabelState = 'default';
 const DEFAULT_OPTIONAL_LABEL = 'Необязательно';
-const DEFAULT_FIRST_LINE = 'First Line';
 
 export function Label({
   label = 'Label',
@@ -14,9 +13,6 @@ export function Label({
   size = DEFAULT_SIZE,
   state = DEFAULT_STATE,
   showInfo = false,
-  twoLines = false,
-  firstLine = DEFAULT_FIRST_LINE,
-  optionalLabel = DEFAULT_OPTIONAL_LABEL,
   className,
   ...rest
 }: LabelProps) {
@@ -26,7 +22,7 @@ export function Label({
   const isDisabled = state === 'disabled';
   const showInfoIcon = isInfo || (isOptional && showInfo);
   const showLockIcon = isDisabled;
-  const showBadge = isOptional && Boolean(optionalLabel);
+  const showBadge = isOptional;
 
   return (
     <div
@@ -34,14 +30,10 @@ export function Label({
         'gr-label',
         `gr-label--${size}`,
         `gr-label--${state}`,
-        {
-          'gr-label--two-lines': isOptional && twoLines
-        },
         className
       )}
       {...rest}
     >
-      {isOptional && twoLines ? <span className="gr-label__line">{firstLine}</span> : null}
       <div className="gr-label__row">
         {content ? <span className="gr-label__text">{content}</span> : null}
         {showInfoIcon ? <span className="gr-label__icon gr-label__icon--info" aria-hidden="true" /> : null}
@@ -54,7 +46,7 @@ export function Label({
             customBackground="--color-background-secondary"
             customTextColor="--color-text-secondary"
           >
-            {optionalLabel}
+            {DEFAULT_OPTIONAL_LABEL}
           </Badge>
         ) : null}
       </div>

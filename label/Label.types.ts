@@ -10,7 +10,4 @@ export interface LabelProps extends HTMLAttributes<HTMLDivElement> {
   size?: LabelSize;
   state?: LabelState;
   showInfo?: boolean;
-  twoLines?: boolean;
-  firstLine?: string;
-  optionalLabel?: string;
 }

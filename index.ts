@@ -34,3 +34,5 @@ export type {
 } from './link';
 export { Label } from './label';
 export type { LabelProps, LabelSize, LabelState } from './label';
+export { Description } from './description';
+export type { DescriptionProps, DescriptionState } from './description';

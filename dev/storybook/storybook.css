@@ -471,6 +471,30 @@ body {
   color: var(--color-text-secondary, #626c77);
 }
 
+.sb-description-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sb-description-row {
+  display: grid;
+  grid-template-columns: 120px minmax(200px, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.sb-description-label {
+  font-family: 'MTS Compact', 'MTS Text', sans-serif;
+  font-size: 14px;
+  color: var(--color-text-secondary, #626c77);
+}
+
+.sb-description-value {
+  display: flex;
+  align-items: center;
+}
+
 .sb-avatar-type-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -1055,6 +1079,14 @@ body {
   }
 
   .sb-label-grid__cell--label {
+    grid-column: 1 / -1;
+  }
+
+  .sb-description-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sb-description-label {
     grid-column: 1 / -1;
   }
 

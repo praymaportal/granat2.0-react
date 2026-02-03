@@ -18,6 +18,8 @@ import LinkStory from '../stories/Link.story';
 import LinkPropsStory from '../stories/LinkProps.story';
 import LabelStory from '../stories/Label.story';
 import LabelPropsStory from '../stories/LabelProps.story';
+import DescriptionStory from '../stories/Description.story';
+import DescriptionPropsStory from '../stories/DescriptionProps.story';
 
 const navItems = [
   {
@@ -69,6 +71,14 @@ const navItems = [
     ]
   },
   {
+    id: 'description',
+    label: 'description',
+    children: [
+      { id: 'description-all', label: 'all vars' },
+      { id: 'description-props', label: 'description props' }
+    ]
+  },
+  {
     id: 'counter',
     label: 'counter',
     children: [
@@ -107,6 +117,8 @@ const storyMap = {
   'link-props': <LinkPropsStory />,
   'label-all': <LabelStory />,
   'label-props': <LabelPropsStory />,
+  'description-all': <DescriptionStory />,
+  'description-props': <DescriptionPropsStory />,
   'counter-all': <CounterStory />,
   'counter-props': <CounterPropsStory />,
   'card-all': <CardStory />,

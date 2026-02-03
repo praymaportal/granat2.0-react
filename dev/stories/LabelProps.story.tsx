@@ -11,9 +11,6 @@ export default function LabelPropsStory() {
   const [size, setSize] = useState<LabelSize>('other');
   const [state, setState] = useState<LabelState>('default');
   const [showInfo, setShowInfo] = useState(false);
-  const [twoLines, setTwoLines] = useState(false);
-  const [firstLine, setFirstLine] = useState('First Line');
-  const [optionalLabel, setOptionalLabel] = useState('Необязательно');
 
   return (
     <StorySection id="label-props" title="label props" description="Интерактивные настройки label.">
@@ -25,9 +22,6 @@ export default function LabelPropsStory() {
               size={size}
               state={state}
               showInfo={showInfo}
-              twoLines={twoLines}
-              firstLine={firstLine}
-              optionalLabel={optionalLabel}
             />
           </div>
         </div>
@@ -72,46 +66,15 @@ export default function LabelPropsStory() {
               </select>
             </div>
             {state === 'optional' ? (
-              <>
-                <div className="sb-control-row">
-                  <span className="sb-control-label">show info</span>
-                  <input
-                    className="sb-control-checkbox"
-                    type="checkbox"
-                    checked={showInfo}
-                    onChange={(event) => setShowInfo(event.target.checked)}
-                  />
-                </div>
-                <div className="sb-control-row">
-                  <span className="sb-control-label">two lines</span>
-                  <input
-                    className="sb-control-checkbox"
-                    type="checkbox"
-                    checked={twoLines}
-                    onChange={(event) => setTwoLines(event.target.checked)}
-                  />
-                </div>
-                {twoLines ? (
-                  <div className="sb-control-row">
-                    <span className="sb-control-label">first line</span>
-                    <input
-                      className="sb-control-input"
-                      type="text"
-                      value={firstLine}
-                      onChange={(event) => setFirstLine(event.target.value)}
-                    />
-                  </div>
-                ) : null}
-                <div className="sb-control-row">
-                  <span className="sb-control-label">optional label</span>
-                  <input
-                    className="sb-control-input"
-                    type="text"
-                    value={optionalLabel}
-                    onChange={(event) => setOptionalLabel(event.target.value)}
-                  />
-                </div>
-              </>
+              <div className="sb-control-row">
+                <span className="sb-control-label">show info</span>
+                <input
+                  className="sb-control-checkbox"
+                  type="checkbox"
+                  checked={showInfo}
+                  onChange={(event) => setShowInfo(event.target.checked)}
+                />
+              </div>
             ) : null}
           </div>
         </div>
