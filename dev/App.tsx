@@ -11,8 +11,8 @@ export default function App() {
         </p>
         <div className="dev-actions">
           <Button label="Основная кнопка" />
-          <Button label="Контрастная" severity="contrast" />
-          <Button label="Контур" variant="outline" />
+          <Button label="Контрастная" variant="primary-alternate" />
+          <Button label="Контур" variant="ghost" />
         </div>
       </header>
     </div>

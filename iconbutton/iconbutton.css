@@ -94,7 +94,7 @@
 
 .gr-icon-button--32 {
   --gr-icon-button-size: 32px;
-  --gr-icon-button-icon-size: 16px;
+  --gr-icon-button-icon-size: 24px;
   --gr-icon-button-radius: var(--radius-12, 0.75rem);
   --gr-icon-button-active-scale: 0.9375;
 }
@@ -108,14 +108,14 @@
 
 .gr-icon-button--52 {
   --gr-icon-button-size: 52px;
-  --gr-icon-button-icon-size: 24px;
+  --gr-icon-button-icon-size: 32px;
   --gr-icon-button-radius: var(--radius-16, 1rem);
   --gr-icon-button-active-scale: 0.9615;
 }
 
 .gr-icon-button--72 {
   --gr-icon-button-size: 72px;
-  --gr-icon-button-icon-size: 24px;
+  --gr-icon-button-icon-size: 32px;
   --gr-icon-button-radius: var(--radius-20, 1.25rem);
   --gr-icon-button-active-scale: 0.9722;
 }
@@ -214,6 +214,11 @@
   color: inherit;
   position: relative;
   z-index: 1;
+}
+
+.gr-icon-button__icon .gr-icon {
+  width: 100%;
+  height: 100%;
 }
 
 .gr-icon-button > .gr-spinner {

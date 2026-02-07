@@ -1,0 +1,32 @@
+.gr-icon {
+  display: inline-flex;
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  flex-shrink: 0;
+}
+
+.gr-icon--16 {
+  width: 16px;
+  height: 16px;
+}
+
+.gr-icon--24 {
+  width: 24px;
+  height: 24px;
+}
+
+.gr-icon--32 {
+  width: 32px;
+  height: 32px;
+}
+
+.gr-icon--44 {
+  width: 44px;
+  height: 44px;
+}
+

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { IconButton } from '../../iconbutton';
 import type { IconButtonSize, IconButtonVariant } from '../../iconbutton';
 import StorySection from '../storybook/components/StorySection';
-import Icon from '../storybook/components/Icon';
+import { Icon } from '../../icon';
 
 type CanvasSurface = 'light' | 'secondary' | 'dark' | 'blur';
 
@@ -53,8 +53,8 @@ export default function IconButtonPropsStory() {
   const [label, setLabel] = useState('Кнопка');
   const [loading, setLoading] = useState(false);
 
-  const iconSize = size <= 32 ? 16 : 24;
-  const iconNode = <Icon name="plus" size={iconSize} />;
+  const iconSize = size <= 24 ? 16 : size <= 44 ? 24 : 32;
+  const iconNode = <Icon name="plus" size={iconSize} variant="outline" />;
   const canvasClass = canvasClassMap[surfaceMap[variant]];
 
   return (

@@ -66,7 +66,7 @@ export function Badge({
           '--gr-badge-bg': resolveCssVar(customBackground),
           '--gr-badge-text-color': resolveCssVar(customTextColor),
           '--gr-badge-icon-color': resolveCssVar(customIconColor)
-        }
+        } as CSSProperties
       : undefined;
 
   return (

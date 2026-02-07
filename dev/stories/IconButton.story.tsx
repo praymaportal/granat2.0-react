@@ -1,7 +1,7 @@
 import { IconButton } from '../../iconbutton';
 import type { IconButtonSize, IconButtonVariant } from '../../iconbutton';
 import StorySection from '../storybook/components/StorySection';
-import Icon from '../storybook/components/Icon';
+import { Icon } from '../../icon';
 
 const sizes: IconButtonSize[] = [24, 32, 44, 52, 72];
 
@@ -46,11 +46,11 @@ function renderIconButtonGrid(loading = false) {
         ))}
       </div>
       {variants.map((variant) => (
-        <div key={`${variant.id}-${loading ? 'loading' : 'default'}`} className="sb-button-grid__row">
+          <div key={`${variant.id}-${loading ? 'loading' : 'default'}`} className="sb-button-grid__row">
           <div className="sb-button-grid__cell sb-button-grid__cell--label">{variant.label}</div>
           {sizes.map((size) => {
-            const iconSize = size <= 32 ? 16 : 24;
-            const iconNode = <Icon name="plus" size={iconSize} />;
+            const iconSize = size <= 24 ? 16 : size <= 44 ? 24 : 32;
+            const iconNode = <Icon name="plus" size={iconSize} variant="outline" />;
 
             return (
               <div key={`${variant.id}-${size}`} className="sb-button-grid__cell">

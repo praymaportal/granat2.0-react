@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from '../../button';
 import type { ButtonSize, ButtonVariant } from '../../button';
 import StorySection from '../storybook/components/StorySection';
-import Icon from '../storybook/components/Icon';
+import { Icon } from '../../icon';
 
 type IconPositionOption = 'none' | 'left' | 'right';
 type CanvasSurface = 'light' | 'secondary' | 'dark' | 'blur';
@@ -54,7 +54,7 @@ export default function ButtonPropsStory() {
   const iconSize = size <= 32 ? 16 : 24;
   const showIcon = iconPosition !== 'none';
   const resolvedIconPosition = iconPosition === 'none' ? 'left' : iconPosition;
-  const iconNode = showIcon ? <Icon name="plus" size={iconSize} /> : undefined;
+  const iconNode = showIcon ? <Icon name="plus" size={iconSize} variant="outline" /> : undefined;
   const canvasClass = canvasClassMap[surfaceMap[variant]];
 
   return (

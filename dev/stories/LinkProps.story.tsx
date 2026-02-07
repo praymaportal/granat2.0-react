@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from '../../link';
 import type { LinkIconPosition, LinkSize, LinkTone, LinkUnderline } from '../../link';
 import StorySection from '../storybook/components/StorySection';
+import { Icon } from '../../icon';
 
 type IconType = 'none' | 'custom' | 'external';
 
@@ -9,8 +10,8 @@ const sizeOptions: LinkSize[] = [16, 20, 24];
 const toneOptions: LinkTone[] = ['primary', 'secondary', 'black', 'white'];
 const underlineOptions: LinkUnderline[] = ['none', 'solid', 'dotted'];
 const iconMap = {
-  custom: <span className="gr-link__icon gr-link__icon--custom" aria-hidden="true" />,
-  external: <span className="gr-link__icon gr-link__icon--external" aria-hidden="true" />
+  custom: <Icon name="link" size={16} variant="outline" ariaLabel="Custom icon" />,
+  external: <Icon name="open-in-new" size={16} variant="outline" ariaLabel="External link" />
 };
 
 export default function LinkPropsStory() {

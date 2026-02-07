@@ -10,8 +10,12 @@
   --gr-input-radius: var(--radius-16, 16px);
   --gr-input-padding-x: 12px;
   --gr-input-padding-y: 10px;
+  --gr-input-padding-top: var(--gr-input-padding-y);
+  --gr-input-padding-bottom: var(--gr-input-padding-y);
   --gr-input-gap: 8px;
   --gr-input-icon-size: 24px;
+  --gr-input-font-size: 17px;
+  --gr-input-line-height: 24px;
 
   display: inline-flex;
   align-items: center;
@@ -40,12 +44,60 @@
   border: none;
   background: transparent;
   outline: none;
-  padding: var(--gr-input-padding-y) var(--gr-input-padding-x);
+  padding: var(--gr-input-padding-top) var(--gr-input-padding-x) var(--gr-input-padding-bottom)
+    var(--gr-input-padding-x);
   box-sizing: border-box;
   font-family: 'MTS Compact', sans-serif;
-  font-size: 17px;
-  line-height: 24px;
+  font-size: var(--gr-input-font-size);
+  line-height: var(--gr-input-line-height);
   color: var(--gr-input-text-color);
+}
+
+.gr-input__field:disabled {
+  cursor: not-allowed;
+}
+
+.gr-input--size-small {
+  --gr-input-height: 32px;
+  --gr-input-padding-y: 6px;
+  --gr-input-font-size: 14px;
+  --gr-input-line-height: 20px;
+  --gr-input-radius: var(--radius-12, 0.75rem);
+}
+
+.gr-input--size-medium {
+  --gr-input-height: 44px;
+}
+
+.gr-input--size-large {
+  --gr-input-height: 52px;
+  --gr-input-padding-y: 14px;
+}
+
+.gr-input--size-xl {
+  --gr-input-height: 72px;
+  --gr-input-radius: var(--radius-20, 1.25rem);
+  --gr-input-padding-top: 24px;
+  --gr-input-padding-bottom: 24px;
+  --gr-input-placeholder-color: var(--color-text-tertiary, #969fa8);
+}
+
+.gr-input--size-xl.gr-input--focused,
+.gr-input--size-xl.gr-input--filled {
+  --gr-input-padding-top: 34px;
+  --gr-input-padding-bottom: 14px;
+}
+
+.gr-input--size-xl:not(.gr-input--focused) .gr-input__field::placeholder {
+  opacity: 0;
+}
+
+.gr-input--size-xl.gr-input--focused .gr-input__field::placeholder {
+  opacity: 1;
+}
+
+.gr-input--size-xl .gr-input__field::placeholder {
+  transition: opacity 0.2s ease;
 }
 
 .gr-input--with-icon .gr-input__field {
@@ -61,9 +113,14 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: var(--gr-input-padding-y) var(--gr-input-padding-x) var(--gr-input-padding-y) 0;
+  padding: var(--gr-input-padding-top) var(--gr-input-padding-x) var(--gr-input-padding-bottom) 0;
   box-sizing: border-box;
   color: var(--gr-input-icon-color);
+}
+
+.gr-input__icon--centered {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .gr-input__icon-button {
@@ -71,63 +128,17 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 0 var(--gr-input-padding-x) 0 0;
+  padding: 0;
+  margin-right: 8px;
   box-sizing: border-box;
 }
 
-.gr-input__icon-symbol {
-  width: var(--gr-input-icon-size);
-  height: var(--gr-input-icon-size);
-  background-color: currentColor;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  -webkit-mask-size: contain;
-}
-
-.gr-input__icon-symbol--warning {
+.gr-input__status-icon--warning {
   color: var(--color-accent-negative, #f95721);
-  mask-image: url('../icons/web2/warning-circle/size-24-style-fill.svg');
-  -webkit-mask-image: url('../icons/web2/warning-circle/size-24-style-fill.svg');
 }
 
-.gr-input__icon-symbol--check {
+.gr-input__status-icon--check {
   color: var(--color-accent-positive, #26cd58);
-  mask-image: url('../icons/web2/check-circle/size-24-style-fill.svg');
-  -webkit-mask-image: url('../icons/web2/check-circle/size-24-style-fill.svg');
-}
-
-.gr-input__icon-symbol--info {
-  mask-image: url('../icons/web2/info-circle/size-24-style-fill.svg');
-  -webkit-mask-image: url('../icons/web2/info-circle/size-24-style-fill.svg');
-}
-
-.gr-input__icon-symbol--lock {
-  mask-image: url('../icons/web2/lock/size-24-style-fill.svg');
-  -webkit-mask-image: url('../icons/web2/lock/size-24-style-fill.svg');
-}
-
-.gr-input__icon-button-symbol {
-  width: 16px;
-  height: 16px;
-  background-color: currentColor;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  -webkit-mask-size: contain;
-}
-
-.gr-input__icon-button-symbol--cross {
-  mask-image: url('../icons/web2/cross-circle/size-16-style-fill.svg');
-  -webkit-mask-image: url('../icons/web2/cross-circle/size-16-style-fill.svg');
-}
-
-.gr-input--disabled {
-  cursor: not-allowed;
 }
 
 .gr-input--valid-error {

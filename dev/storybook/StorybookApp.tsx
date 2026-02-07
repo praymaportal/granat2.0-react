@@ -4,6 +4,8 @@ import ButtonStory from '../stories/Button.story';
 import ButtonPropsStory from '../stories/ButtonProps.story';
 import SpinnerStory from '../stories/Spinner.story';
 import SpinnerPropsStory from '../stories/SpinnerProps.story';
+import IconStory from '../stories/Icon.story';
+import IconPropsStory from '../stories/IconProps.story';
 import IconButtonStory from '../stories/IconButton.story';
 import IconButtonPropsStory from '../stories/IconButtonProps.story';
 import CardStory from '../stories/Card.story';
@@ -24,6 +26,14 @@ import InputStory from '../stories/Input.story';
 import InputPropsStory from '../stories/InputProps.story';
 
 const navItems = [
+  {
+    id: 'icon',
+    label: 'icon',
+    children: [
+      { id: 'icon-all', label: 'all vars' },
+      { id: 'icon-props', label: 'icon props' }
+    ]
+  },
   {
     id: 'button',
     label: 'button',
@@ -115,6 +125,8 @@ const navItems = [
 ];
 
 const storyMap = {
+  'icon-all': <IconStory />,
+  'icon-props': <IconPropsStory />,
   'button-all': <ButtonStory />,
   'button-props': <ButtonPropsStory />,
   'icon-button-all': <IconButtonStory />,

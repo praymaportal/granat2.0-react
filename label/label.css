@@ -44,28 +44,15 @@
 }
 
 .gr-label__icon {
-  width: var(--gr-label-icon-size);
-  height: var(--gr-label-icon-size);
-  flex-shrink: 0;
-  background-color: var(--gr-label-icon-color);
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  -webkit-mask-size: contain;
+  color: var(--gr-label-icon-color);
   align-self: flex-start;
 }
 
 .gr-label__icon--lock {
-  mask-image: url('../icons/web2/lock/size-16-style-fill.svg');
-  -webkit-mask-image: url('../icons/web2/lock/size-16-style-fill.svg');
   margin-top: 0;
 }
 
 .gr-label__icon--info {
-  mask-image: url('../icons/web2/question-circle/size-16-style-fill.svg');
-  -webkit-mask-image: url('../icons/web2/question-circle/size-16-style-fill.svg');
   margin-top: 1px;
 }
 

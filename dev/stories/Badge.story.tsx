@@ -1,7 +1,7 @@
 import { Badge } from '../../badge';
 import type { BadgeIconPosition, BadgeSize, BadgeSurface } from '../../badge';
 import StorySection from '../storybook/components/StorySection';
-import Icon from '../storybook/components/Icon';
+import { Icon } from '../../icon';
 
 const sizes: BadgeSize[] = [16, 20, 24, 32];
 
@@ -47,7 +47,9 @@ function renderDefaultGrid(iconPosition?: BadgeIconPosition) {
       </div>
       {sizes.map((size) => {
         const iconSize = size >= 32 ? 24 : 16;
-        const iconNode = iconPosition ? <Icon name="plus" size={iconSize} /> : undefined;
+        const iconNode = iconPosition ? (
+          <Icon name="plus" size={iconSize} variant="outline" />
+        ) : undefined;
 
         return (
           <div key={size} className="sb-badge-grid__row">
@@ -90,7 +92,9 @@ function renderCustomGrid(iconPosition?: BadgeIconPosition) {
       </div>
       {sizes.map((size) => {
         const iconSize = size >= 32 ? 24 : 16;
-        const iconNode = iconPosition ? <Icon name="plus" size={iconSize} /> : undefined;
+        const iconNode = iconPosition ? (
+          <Icon name="plus" size={iconSize} variant="outline" />
+        ) : undefined;
 
         return (
           <div key={`custom-${size}`} className="sb-badge-grid__row">

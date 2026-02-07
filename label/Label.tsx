@@ -1,5 +1,6 @@
 import type { LabelProps, LabelSize, LabelState } from './Label.types';
 import { Badge } from '../badge';
+import { Icon } from '../icon';
 import { classNames } from '../utils';
 import './label.css';
 
@@ -36,8 +37,22 @@ export function Label({
     >
       <div className="gr-label__row">
         {content ? <span className="gr-label__text">{content}</span> : null}
-        {showInfoIcon ? <span className="gr-label__icon gr-label__icon--info" aria-hidden="true" /> : null}
-        {showLockIcon ? <span className="gr-label__icon gr-label__icon--lock" aria-hidden="true" /> : null}
+        {showInfoIcon ? (
+          <Icon
+            className="gr-label__icon gr-label__icon--info"
+            name="question-circle"
+            size={16}
+            variant="fill"
+          />
+        ) : null}
+        {showLockIcon ? (
+          <Icon
+            className="gr-label__icon gr-label__icon--lock"
+            name="lock"
+            size={16}
+            variant="fill"
+          />
+        ) : null}
         {showBadge ? (
           <Badge
             size={16}

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Badge } from '../../badge';
 import type { BadgeSize, BadgeSurface, BadgeVariant } from '../../badge';
 import StorySection from '../storybook/components/StorySection';
-import Icon from '../storybook/components/Icon';
+import { Icon } from '../../icon';
 
 type IconPositionOption = 'none' | 'left' | 'right';
 
@@ -54,7 +54,7 @@ export default function BadgePropsStory() {
   const showIcon = iconPosition !== 'none';
   const resolvedIconPosition = iconPosition === 'none' ? 'left' : iconPosition;
   const iconSize = size === 32 ? 24 : 16;
-  const iconNode = showIcon ? <Icon name="plus" size={iconSize} /> : undefined;
+  const iconNode = showIcon ? <Icon name="plus" size={iconSize} variant="outline" /> : undefined;
   const canvasClass =
     surface === 'secondary' ? 'sb-props__canvas--secondary' : 'sb-props__canvas--light';
 
