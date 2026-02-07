@@ -1,4 +1,4 @@
-import { cloneElement, isValidElement, useEffect, useMemo, useRef, useState } from 'react';
+import { cloneElement, isValidElement, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { MouseEvent } from 'react';
 import IMask from 'imask';
 import type {
@@ -90,11 +90,35 @@ export function Input({
   const inputRef = useRef<HTMLInputElement>(null);
   // imask typings are quite strict around factory overloads; runtime use is stable here.
   const maskRef = useRef<any>(null);
+  const selectionRef = useRef<{
+    start: number;
+    end: number;
+    direction?: Exclude<HTMLInputElement['selectionDirection'], null>;
+  } | null>(null);
 
   const [uncontrolledPasswordVisibility, setUncontrolledPasswordVisibility] =
     useState<InputPasswordVisibility>(defaultPasswordVisibility);
   const resolvedPasswordVisibility = passwordVisibility ?? uncontrolledPasswordVisibility;
   const isPasswordShown = resolvedPasswordVisibility === 'shown';
+
+  useLayoutEffect(() => {
+    // Changing input type (password <-> text) can reset cursor position in some browsers.
+    // If toggle was initiated via our action button, restore last selection.
+    if (kind !== 'password') return;
+    const sel = selectionRef.current;
+    if (!sel) return;
+    const input = inputRef.current;
+    if (!input) return;
+    selectionRef.current = null;
+
+    requestAnimationFrame(() => {
+      try {
+        input.setSelectionRange(sel.start, sel.end, sel.direction);
+      } catch {
+        // Some browsers may restrict selection APIs for certain input types.
+      }
+    });
+  }, [kind, resolvedPasswordVisibility]);
 
   const [innerValue, setInnerValue] = useState(() => {
     if (value !== undefined) {
@@ -308,6 +332,15 @@ export function Input({
 
     const handleAction = () => {
       if (kind === 'password') {
+        const input = inputRef.current;
+        if (input) {
+          const start = input.selectionStart;
+          const end = input.selectionEnd;
+          if (start !== null && end !== null) {
+            selectionRef.current = { start, end, direction: input.selectionDirection ?? undefined };
+          }
+        }
+
         const next: InputPasswordVisibility = isPasswordShown ? 'hidden' : 'shown';
         if (passwordVisibility === undefined) {
           setUncontrolledPasswordVisibility(next);
