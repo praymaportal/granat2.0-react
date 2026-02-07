@@ -23,11 +23,14 @@ const urlCache = new Map<string, string>();
 const pendingCache = new Map<string, Promise<string | null>>();
 
 const STYLE_ELEMENT_ID = 'granat-icon-styles';
-const insertedRules = new Set<string>();
+// Track what URL was last written for a given class, so we can safely update on hot reload
+// or in edge cases where URL state changes.
+const insertedRules = new Map<string, string>();
 
 function ensureMaskRule(className: string, url: string) {
   if (typeof document === 'undefined') return;
-  if (insertedRules.has(className)) return;
+  const existing = insertedRules.get(className);
+  if (existing === url) return;
 
   let styleEl = document.getElementById(STYLE_ELEMENT_ID) as HTMLStyleElement | null;
   if (!styleEl) {
@@ -43,7 +46,7 @@ function ensureMaskRule(className: string, url: string) {
     )
   );
 
-  insertedRules.add(className);
+  insertedRules.set(className, url);
 }
 
 function resolveIconKey(pack: IconPack, name: string, size: IconSize, variant: IconVariant) {
@@ -93,6 +96,8 @@ export function Icon({
 
   useEffect(() => {
     let mounted = true;
+    // Prevent stale URL from being used for a new icon key.
+    setUrl(urlCache.get(key) ?? null);
     void loadIconUrl(key).then((next) => {
       if (!mounted) return;
       setUrl(next);
