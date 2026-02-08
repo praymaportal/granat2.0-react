@@ -24,6 +24,8 @@ import DescriptionStory from '../stories/Description.story';
 import DescriptionPropsStory from '../stories/DescriptionProps.story';
 import InputStory from '../stories/Input.story';
 import InputPropsStory from '../stories/InputProps.story';
+import CheckboxStory from '../stories/Checkbox.story';
+import CheckboxPropsStory from '../stories/CheckboxProps.story';
 
 const navItems = [
   {
@@ -99,6 +101,14 @@ const navItems = [
     ]
   },
   {
+    id: 'checkbox',
+    label: 'checkbox',
+    children: [
+      { id: 'checkbox-all', label: 'all vars' },
+      { id: 'checkbox-props', label: 'checkbox props' }
+    ]
+  },
+  {
     id: 'counter',
     label: 'counter',
     children: [
@@ -143,6 +153,8 @@ const storyMap = {
   'description-props': <DescriptionPropsStory />,
   'input-all': <InputStory />,
   'input-props': <InputPropsStory />,
+  'checkbox-all': <CheckboxStory />,
+  'checkbox-props': <CheckboxPropsStory />,
   'counter-all': <CounterStory />,
   'counter-props': <CounterPropsStory />,
   'card-all': <CardStory />,

@@ -1,0 +1,157 @@
+.gr-checkbox {
+  --gr-checkbox-size: 24px;
+  --gr-checkbox-padding: 3px;
+  --gr-checkbox-box-size: calc(var(--gr-checkbox-size) - (var(--gr-checkbox-padding) * 2));
+  --gr-checkbox-box-radius: var(--radius-6, 6px);
+  --gr-checkbox-active-scale: 0.9166667;
+
+  --gr-checkbox-border-width: 1.5px;
+  --gr-checkbox-default-fill: var(--color-control-alternative, #ffffff);
+  --gr-checkbox-default-stroke: var(--color-control-stroke, #8d969f);
+  --gr-checkbox-active-fill: var(--color-control-primary-active, #ff0032);
+  --gr-checkbox-mark-fill: var(--color-constant-greyscale-0, #ffffff);
+  --gr-checkbox-opacity-fill: var(--color-control-hover-primary, rgba(188, 195, 208, 0.4));
+  --gr-checkbox-opacity-blend: var(--blend-hover, multiply);
+
+  display: inline-flex;
+  width: var(--gr-checkbox-size);
+  height: var(--gr-checkbox-size);
+  padding: var(--gr-checkbox-padding);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.gr-checkbox--16 {
+  --gr-checkbox-size: 16px;
+  --gr-checkbox-padding: 2px;
+  --gr-checkbox-box-radius: var(--radius-4, 4px);
+  --gr-checkbox-active-scale: 0.875;
+  --gr-checkbox-border-width: 1.5px;
+}
+
+.gr-checkbox--24 {
+  --gr-checkbox-size: 24px;
+  --gr-checkbox-padding: 3px;
+  --gr-checkbox-box-radius: var(--radius-6, 6px);
+  --gr-checkbox-active-scale: 0.9166667;
+  --gr-checkbox-border-width: 1.5px;
+}
+
+.gr-checkbox--32 {
+  --gr-checkbox-size: 32px;
+  --gr-checkbox-padding: 4px;
+  --gr-checkbox-box-radius: var(--radius-8, 8px);
+  --gr-checkbox-active-scale: 0.9375;
+  --gr-checkbox-border-width: 2px;
+}
+
+.gr-checkbox__input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.gr-checkbox__input:disabled {
+  cursor: not-allowed;
+}
+
+.gr-checkbox__icon {
+  display: block;
+  width: var(--gr-checkbox-box-size);
+  height: var(--gr-checkbox-box-size);
+  position: relative;
+  z-index: 1;
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 62.5ms ease;
+  will-change: transform;
+}
+
+.gr-checkbox__icon-default {
+  fill: var(--gr-checkbox-default-fill);
+  stroke: var(--gr-checkbox-default-stroke);
+  stroke-width: var(--gr-checkbox-border-width);
+}
+
+.gr-checkbox__icon-active {
+  fill: var(--gr-checkbox-active-fill);
+  visibility: hidden;
+}
+
+.gr-checkbox__icon-check {
+  fill: var(--gr-checkbox-mark-fill);
+  visibility: hidden;
+}
+
+.gr-checkbox__icon-minus {
+  fill: var(--gr-checkbox-mark-fill);
+  visibility: hidden;
+}
+
+.gr-checkbox__icon-opacity {
+  fill: var(--gr-checkbox-opacity-fill);
+  mix-blend-mode: var(--gr-checkbox-opacity-blend);
+  opacity: 0;
+  transition: opacity 150ms ease;
+  pointer-events: none;
+}
+
+@media (any-hover: hover) {
+  .gr-checkbox:hover:not(.gr-checkbox--disabled)
+    .gr-checkbox__input:not(:disabled)
+    ~ .gr-checkbox__icon
+    .gr-checkbox__icon-opacity {
+    opacity: 1;
+  }
+}
+
+.gr-checkbox__input:active:not(:disabled) ~ .gr-checkbox__icon {
+  transform: scale(var(--gr-checkbox-active-scale));
+}
+
+.gr-checkbox__input:focus-visible:not(:disabled) ~ .gr-checkbox__icon {
+  outline: 2px solid var(--color-accent-active, #007cff);
+  outline-offset: 1px;
+  border-radius: var(--gr-checkbox-box-radius);
+}
+
+.gr-checkbox--checked .gr-checkbox__icon-default,
+.gr-checkbox--indeterminate .gr-checkbox__icon-default {
+  visibility: hidden;
+}
+
+.gr-checkbox--checked .gr-checkbox__icon-active,
+.gr-checkbox--indeterminate .gr-checkbox__icon-active {
+  visibility: visible;
+}
+
+.gr-checkbox--checked .gr-checkbox__icon-check {
+  visibility: visible;
+}
+
+.gr-checkbox--indeterminate .gr-checkbox__icon-minus {
+  visibility: visible;
+}
+
+.gr-checkbox--status-error {
+  --gr-checkbox-default-stroke: var(--color-accent-negative, #f95721);
+}
+
+.gr-checkbox--status-error.gr-checkbox--checked,
+.gr-checkbox--status-error.gr-checkbox--indeterminate {
+  --gr-checkbox-active-fill: var(--color-accent-negative, #f95721);
+}
+
+.gr-checkbox--disabled {
+  --gr-checkbox-default-fill: var(--color-control-inactive, rgba(188, 195, 208, 0.5));
+  --gr-checkbox-default-stroke: transparent;
+  --gr-checkbox-active-fill: var(--color-control-inactive, rgba(188, 195, 208, 0.5));
+  --gr-checkbox-mark-fill: var(--color-icon-secondary, #8d969f);
+}
+
+.gr-checkbox--disabled .gr-checkbox__icon-opacity {
+  opacity: 0;
+}

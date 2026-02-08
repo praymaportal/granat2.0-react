@@ -48,3 +48,5 @@ export type {
   InputKind,
   InputPasswordVisibility
 } from './input';
+export { Checkbox } from './checkbox';
+export type { CheckboxProps, CheckboxSize, CheckboxStatus, CheckboxValue } from './checkbox';

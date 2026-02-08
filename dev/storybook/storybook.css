@@ -318,6 +318,63 @@ body {
   color: var(--color-text-primary, #1d2023);
 }
 
+.sb-checkbox-themes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.sb-checkbox-theme {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sb-checkbox-theme__label {
+  font-family: 'MTS Wide', 'MTS Text', sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--color-text-primary, #1d2023);
+}
+
+.sb-checkbox-canvas {
+  border-radius: 24px;
+  border: 1px dashed rgba(120, 133, 150, 0.35);
+  padding: 18px;
+  background: var(--color-background-primary, #ffffff);
+}
+
+.sb-checkbox-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sb-checkbox-grid__row {
+  display: grid;
+  grid-template-columns: 120px repeat(3, 64px);
+  gap: 12px;
+  align-items: center;
+}
+
+.sb-checkbox-grid__row--header {
+  align-items: end;
+}
+
+.sb-checkbox-grid__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sb-checkbox-grid__cell--label {
+  justify-content: flex-start;
+  font-family: 'MTS Compact', 'MTS Text', sans-serif;
+  font-size: 15px;
+  color: var(--color-text-primary, #1d2023);
+}
+
 .sb-badge-grid {
   display: flex;
   flex-direction: column;
