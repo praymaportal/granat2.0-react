@@ -1,3 +1,13 @@
+.gr-input-field {
+  --gr-input-field-gap: 4px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: var(--gr-input-field-gap);
+}
+
 .gr-input {
   --gr-input-bg: var(--color-background-secondary, #f2f3f7);
   --gr-input-border: var(--color-background-stroke, rgba(188, 195, 208, 0.5));
@@ -27,6 +37,11 @@
   background: var(--gr-input-bg);
   box-sizing: border-box;
   color: var(--gr-input-text-color);
+  position: relative;
+}
+
+.gr-input--on-secondary-bg {
+  --gr-input-bg: var(--color-background-secondary-elevated, #ffffff);
 }
 
 .gr-input:hover:not(.gr-input--disabled) {
@@ -98,6 +113,36 @@
 
 .gr-input--size-xl .gr-input__field::placeholder {
   transition: opacity 0.2s ease;
+}
+
+.gr-input__floating-label {
+  position: absolute;
+  top: 8px;
+  left: var(--gr-input-padding-x);
+  max-width: calc(100% - (var(--gr-input-padding-x) * 2));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gr-input__floating-label .gr-label {
+  transition:
+    font-size 0.2s ease,
+    line-height 0.2s ease,
+    color 0.2s ease;
+}
+
+.gr-input--size-xl .gr-input__floating-label {
+  top: 50%;
+  transform: translateY(-50%);
+  transition:
+    top 0.2s ease,
+    transform 0.2s ease;
+}
+
+.gr-input--size-xl.gr-input--focused .gr-input__floating-label,
+.gr-input--size-xl.gr-input--filled .gr-input__floating-label {
+  top: 8px;
+  transform: translateY(0);
 }
 
 .gr-input--with-icon .gr-input__field {

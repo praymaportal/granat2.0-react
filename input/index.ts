@@ -4,6 +4,7 @@ export type {
   InputValidationState,
   InputDisabledAccessory,
   InputSize,
+  InputColor,
   InputKind,
   InputPasswordVisibility
 } from './Input.types';

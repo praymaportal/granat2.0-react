@@ -1,12 +1,12 @@
 import { Label } from '../../label';
-import type { LabelSize, LabelState } from '../../label';
+import type { LabelHint, LabelSize, LabelStatus } from '../../label';
 import StorySection from '../storybook/components/StorySection';
 
 type LabelRow = {
   id: string;
   label: string;
-  state: LabelState;
-  showInfo?: boolean;
+  status: LabelStatus;
+  hint: LabelHint;
 };
 
 const sizes: LabelSize[] = ['other', 'xl'];
@@ -17,12 +17,12 @@ const sizeLabels: Record<LabelSize, string> = {
 };
 
 const rows: LabelRow[] = [
-  { id: 'default', label: 'Default', state: 'default' },
-  { id: 'error', label: 'Error', state: 'error' },
-  { id: 'disabled', label: 'Disabled', state: 'disabled' },
-  { id: 'info', label: 'Info', state: 'info' },
-  { id: 'optional', label: 'Optional', state: 'optional' },
-  { id: 'optional-info', label: 'Optional + Info', state: 'optional', showInfo: true }
+  { id: 'default', label: 'Default', status: 'default', hint: 'none' },
+  { id: 'error', label: 'Error', status: 'error', hint: 'none' },
+  { id: 'disabled', label: 'Disabled', status: 'disabled', hint: 'none' },
+  { id: 'info', label: 'Info', status: 'default', hint: 'info' },
+  { id: 'optional', label: 'Optional', status: 'default', hint: 'optional' },
+  { id: 'optional-info', label: 'Optional + Info', status: 'default', hint: 'optional-info' }
 ];
 
 export default function LabelStory() {
@@ -38,16 +38,16 @@ export default function LabelStory() {
           ))}
         </div>
         {rows.map((row) => (
-          <div key={row.id} className="sb-label-grid__row">
-            <div className="sb-label-grid__cell sb-label-grid__cell--label">{row.label}</div>
-            {sizes.map((size) => (
-              <div key={`${row.id}-${size}`} className="sb-label-grid__cell">
-                <Label size={size} state={row.state} showInfo={row.showInfo}>
-                  Label
-                </Label>
-              </div>
-            ))}
-          </div>
+            <div key={row.id} className="sb-label-grid__row">
+              <div className="sb-label-grid__cell sb-label-grid__cell--label">{row.label}</div>
+              {sizes.map((size) => (
+                <div key={`${row.id}-${size}`} className="sb-label-grid__cell">
+                  <Label size={size} status={row.status} hint={row.hint}>
+                    Label
+                  </Label>
+                </div>
+              ))}
+            </div>
         ))}
       </div>
     </StorySection>

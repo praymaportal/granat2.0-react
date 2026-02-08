@@ -113,6 +113,16 @@ export default function InputStory() {
                       defaultValue={item.value}
                       disabled={item.disabled}
                       placeholder="Placeholder"
+                      showLabel
+                      label="Label"
+                      showDescription
+                      description={
+                        item.id === 'error'
+                          ? 'Error message'
+                          : item.id === 'success'
+                            ? 'Success message'
+                            : 'Description'
+                      }
                       icon={item.icon}
                       disabledAccessory={item.disabledAccessory}
                     />
@@ -136,10 +146,25 @@ export default function InputStory() {
                   {row.label}
                 </div>
                 <div className="sb-input-matrix__cell">
-                  <Input size="medium" kind={row.kind} />
+                  <Input
+                    size="medium"
+                    kind={row.kind}
+                    showLabel
+                    label="Label"
+                    showDescription
+                    description="Description"
+                  />
                 </div>
                 <div className="sb-input-matrix__cell">
-                  <Input size="medium" kind={row.kind} defaultValue={row.filledValue} />
+                  <Input
+                    size="medium"
+                    kind={row.kind}
+                    showLabel
+                    label="Label"
+                    showDescription
+                    description="Description"
+                    defaultValue={row.filledValue}
+                  />
                 </div>
               </div>
             ))}

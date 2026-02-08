@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Input } from '../../input';
 import type {
   InputDisabledAccessory,
+  InputColor,
   InputKind,
   InputPasswordVisibility,
   InputSize,
@@ -9,6 +10,8 @@ import type {
 } from '../../input';
 import { Icon } from '../../icon';
 import StorySection from '../storybook/components/StorySection';
+import type { LabelHint } from '../../label';
+import type { DescriptionState } from '../../description';
 
 const stateOptions: InputValidationState[] = ['not-validate', 'success', 'error'];
 const kindOptions: Array<{ value: InputKind; label: string }> = [
@@ -29,6 +32,13 @@ const disabledAccessoryOptions: Array<{ value: InputDisabledAccessory; label: st
   { value: 'copy', label: 'Copy' },
   { value: 'info', label: 'Info' }
 ];
+const labelHintOptions: Array<{ value: LabelHint; label: string }> = [
+  { value: 'none', label: 'None' },
+  { value: 'info', label: 'Info' },
+  { value: 'optional', label: 'Optional' },
+  { value: 'optional-info', label: 'Info + Optional' }
+];
+const descriptionStateOptions: DescriptionState[] = ['default', 'error', 'success'];
 
 const sizeOptions: Array<{ value: InputSize; label: string }> = [
   { value: 'small', label: 'Small (32)' },
@@ -37,17 +47,29 @@ const sizeOptions: Array<{ value: InputSize; label: string }> = [
   { value: 'xl', label: 'Extra Large (72)' }
 ];
 
+const colorOptions: Array<{ value: InputColor; label: string }> = [
+  { value: 'on-primary-bg', label: 'On primary background' },
+  { value: 'on-secondary-bg', label: 'On secondary background' }
+];
+
 export default function InputPropsStory() {
   const [size, setSize] = useState<InputSize>('medium');
   const [kind, setKind] = useState<InputKind>('default');
   const [isValid, setIsValid] = useState<InputValidationState>('not-validate');
+  const [color, setColor] = useState<InputColor>('on-primary-bg');
   const [value, setValue] = useState('');
-  const [useCustomPlaceholder, setUseCustomPlaceholder] = useState(false);
   const [placeholder, setPlaceholder] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [disabledAccessory, setDisabledAccessory] = useState<InputDisabledAccessory>('none');
   const [clearable, setClearable] = useState(true);
   const [passwordVisibility, setPasswordVisibility] = useState<InputPasswordVisibility>('hidden');
+
+  const [showLabel, setShowLabel] = useState(true);
+  const [label, setLabel] = useState('Label');
+  const [labelHint, setLabelHint] = useState<LabelHint>('none');
+  const [showDescription, setShowDescription] = useState(true);
+  const [description, setDescription] = useState('Description');
+  const [descriptionState, setDescriptionState] = useState<DescriptionState>('default');
 
   const resolvedIsValid: InputValidationState = disabled ? 'not-validate' : isValid;
   const iconNode =
@@ -67,18 +89,22 @@ export default function InputPropsStory() {
       />
     ) : null;
 
+  const canvasClass =
+    color === 'on-secondary-bg' ? 'sb-props__canvas--secondary' : 'sb-props__canvas--light';
+
   return (
     <StorySection id="input-props" title="input props" description="Интерактивные настройки input.">
       <div className="sb-props">
         <div className="sb-props__preview">
-          <div className="sb-props__canvas sb-props__canvas--light">
+          <div className={`sb-props__canvas ${canvasClass}`}>
             <Input
               size={size}
               kind={kind}
               isValid={resolvedIsValid}
+              color={color}
               value={value}
               onChange={(event) => setValue(event.target.value)}
-              placeholder={useCustomPlaceholder ? placeholder : undefined}
+              placeholder={placeholder.trim() ? placeholder : undefined}
               disabled={disabled}
               disabledAccessory={disabledAccessory}
               clearable={clearable}
@@ -95,6 +121,12 @@ export default function InputPropsStory() {
                   ? () => {}
                   : undefined
               }
+              showLabel={showLabel}
+              label={label}
+              labelHint={labelHint}
+              showDescription={showDescription}
+              description={description}
+              descriptionState={descriptionState}
             />
           </div>
         </div>
@@ -117,6 +149,20 @@ export default function InputPropsStory() {
                   </label>
                 ))}
               </div>
+            </div>
+            <div className="sb-control-row">
+              <span className="sb-control-label">color</span>
+              <select
+                className="sb-control-select"
+                value={color}
+                onChange={(event) => setColor(event.target.value as InputColor)}
+              >
+                {colorOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="sb-control-row">
               <span className="sb-control-label">kind</span>
@@ -216,24 +262,87 @@ export default function InputPropsStory() {
               />
             </div>
             <div className="sb-control-row">
-              <span className="sb-control-label">custom placeholder</span>
+              <span className="sb-control-label">placeholder</span>
+              <input
+                className="sb-control-input"
+                type="text"
+                value={placeholder}
+                onChange={(event) => setPlaceholder(event.target.value)}
+              />
+            </div>
+
+            <div className="sb-control-row">
+              <span className="sb-control-label">label</span>
               <input
                 className="sb-control-checkbox"
                 type="checkbox"
-                checked={useCustomPlaceholder}
-                onChange={(event) => setUseCustomPlaceholder(event.target.checked)}
+                checked={showLabel}
+                onChange={(event) => setShowLabel(event.target.checked)}
               />
             </div>
-            {useCustomPlaceholder ? (
-              <div className="sb-control-row">
-                <span className="sb-control-label">placeholder</span>
-                <input
-                  className="sb-control-input"
-                  type="text"
-                  value={placeholder}
-                  onChange={(event) => setPlaceholder(event.target.value)}
-                />
-              </div>
+            {showLabel ? (
+              <>
+                <div className="sb-control-row">
+                  <span className="sb-control-label">label text</span>
+                  <input
+                    className="sb-control-input"
+                    type="text"
+                    value={label}
+                    onChange={(event) => setLabel(event.target.value)}
+                  />
+                </div>
+                <div className="sb-control-row">
+                  <span className="sb-control-label">label hint</span>
+                  <select
+                    className="sb-control-select"
+                    value={labelHint}
+                    onChange={(event) => setLabelHint(event.target.value as LabelHint)}
+                  >
+                    {labelHintOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </>
+            ) : null}
+
+            <div className="sb-control-row">
+              <span className="sb-control-label">description</span>
+              <input
+                className="sb-control-checkbox"
+                type="checkbox"
+                checked={showDescription}
+                onChange={(event) => setShowDescription(event.target.checked)}
+              />
+            </div>
+            {showDescription ? (
+              <>
+                <div className="sb-control-row">
+                  <span className="sb-control-label">description text</span>
+                  <input
+                    className="sb-control-input"
+                    type="text"
+                    value={description}
+                    onChange={(event) => setDescription(event.target.value)}
+                  />
+                </div>
+                <div className="sb-control-row">
+                  <span className="sb-control-label">description state</span>
+                  <select
+                    className="sb-control-select"
+                    value={descriptionState}
+                    onChange={(event) => setDescriptionState(event.target.value as DescriptionState)}
+                  >
+                    {descriptionStateOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </>
             ) : null}
           </div>
         </div>

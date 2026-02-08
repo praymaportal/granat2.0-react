@@ -3,6 +3,7 @@ import type { MouseEvent } from 'react';
 import IMask from 'imask';
 import type {
   InputDisabledAccessory,
+  InputColor,
   InputKind,
   InputPasswordVisibility,
   InputProps,
@@ -12,12 +13,17 @@ import type {
 import { classNames } from '../utils';
 import { IconButton } from '../iconbutton';
 import { Icon } from '../icon';
+import { Label } from '../label';
+import type { LabelHint, LabelStatus } from '../label';
+import { Description } from '../description';
+import type { DescriptionState } from '../description';
 import './input.css';
 
 const DEFAULT_VALIDATION: InputValidationState = 'not-validate';
 const DEFAULT_DISABLED_ACCESSORY: InputDisabledAccessory = 'none';
 const DEFAULT_SIZE: InputSize = 'medium';
 const DEFAULT_KIND: InputKind = 'default';
+const DEFAULT_COLOR: InputColor = 'on-primary-bg';
 const DEFAULT_PASSWORD_VISIBILITY: InputPasswordVisibility = 'hidden';
 const VALIDATION_CLASS_MAP: Record<InputValidationState, string | null> = {
   'not-validate': null,
@@ -29,6 +35,16 @@ const SIZE_CLASS_MAP: Record<InputSize, string> = {
   medium: 'gr-input--size-medium',
   large: 'gr-input--size-large',
   xl: 'gr-input--size-xl'
+};
+const COLOR_CLASS_MAP: Record<InputColor, string | null> = {
+  'on-primary-bg': null,
+  'on-secondary-bg': 'gr-input--on-secondary-bg'
+};
+const DEFAULT_LABEL_SIZE_BY_INPUT: Record<InputSize, 'other' | 'xl'> = {
+  small: 'other',
+  medium: 'other',
+  large: 'other',
+  xl: 'other'
 };
 
 async function copyToClipboard(text: string) {
@@ -63,6 +79,7 @@ export function Input({
   size = DEFAULT_SIZE,
   kind = DEFAULT_KIND,
   isValid = DEFAULT_VALIDATION,
+  color = DEFAULT_COLOR,
   icon,
   iconButton,
   clearable = true,
@@ -82,6 +99,12 @@ export function Input({
   onFocus,
   onBlur,
   onChange,
+  showLabel: showLabelProp,
+  label,
+  labelHint = 'none',
+  showDescription: showDescriptionProp,
+  description,
+  descriptionState: descriptionStateProp,
   ...rest
 }: InputProps) {
   const isDisabled = Boolean(disabled);
@@ -135,11 +158,31 @@ export function Input({
     ? resolvedValue.length > 0
     : resolvedValue !== null && resolvedValue !== undefined && String(resolvedValue).length > 0;
 
+  const showLabel = (showLabelProp ?? label !== undefined) && label !== null;
+  const labelSize = size === 'xl' && !isFocused && !hasValue ? 'xl' : DEFAULT_LABEL_SIZE_BY_INPUT[size];
+  const labelOptionalColor =
+    size === 'xl'
+      ? color === 'on-primary-bg'
+        ? 'on-secondary-bg'
+        : 'on-primary-bg'
+      : color;
+  const resolvedLabelStatus: LabelStatus = useMemo(() => {
+    if (isDisabled) return 'disabled';
+    if (isValid === 'error') return 'error';
+    return 'default';
+  }, [isDisabled, isValid]);
+
+  const showDescription = (showDescriptionProp ?? description !== undefined) && description !== null;
+  const resolvedDescriptionState: DescriptionState = useMemo(() => {
+    if (!isDisabled && isValid === 'error') return 'error';
+    return descriptionStateProp ?? 'default';
+  }, [descriptionStateProp, isDisabled, isValid]);
+
   const placeholder = useMemo(() => {
     if (placeholderProp !== undefined) return placeholderProp;
     switch (kind) {
       case 'date':
-        return 'ДД.ММ.ГГГГ';
+        return 'дд.мм.гггг';
       case 'time':
         return 'чч:мм';
       case 'money':
@@ -413,42 +456,70 @@ export function Input({
           : inputModeProp;
 
   return (
-    <div
-      className={classNames(
-        'gr-input',
-        SIZE_CLASS_MAP[size],
-        !isDisabled ? VALIDATION_CLASS_MAP[isValid] : null,
-        {
-          'gr-input--with-icon': hasTrailing,
-          'gr-input--disabled': isDisabled,
-          'gr-input--focused': isFocused,
-          'gr-input--filled': hasValue,
-          'gr-input--kind-password': kind === 'password',
-          'gr-input--kind-money': kind === 'money',
-          'gr-input--kind-phone': kind === 'phone-number' || kind === 'phone-number-with-button',
-          'gr-input--kind-date': kind === 'date',
-          'gr-input--kind-time': kind === 'time'
-        },
-        className
-      )}
-    >
-      <input
-        className="gr-input__field"
-        disabled={isDisabled}
-        placeholder={placeholder}
-        type={inputType}
-        inputMode={inputMode}
-        {...inputValueProps}
-        ref={inputRef}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        onChange={handleChange}
-        {...rest}
-      />
-      {shouldShowIcon ? <span className="gr-input__icon">{icon}</span> : null}
-      {renderDisabledAccessory()}
-      {renderActionButton()}
-      {renderClearButton()}
+    <div className="gr-input-field">
+      {showLabel && size !== 'xl' ? (
+        <Label
+          size={labelSize}
+          status={resolvedLabelStatus}
+          hint={labelHint}
+          optionalColor={labelOptionalColor}
+        >
+          {label}
+        </Label>
+      ) : null}
+      <div
+        className={classNames(
+          'gr-input',
+          SIZE_CLASS_MAP[size],
+          COLOR_CLASS_MAP[color],
+          !isDisabled ? VALIDATION_CLASS_MAP[isValid] : null,
+          {
+            'gr-input--with-icon': hasTrailing,
+            'gr-input--disabled': isDisabled,
+            'gr-input--focused': isFocused,
+            'gr-input--filled': hasValue,
+            'gr-input--kind-password': kind === 'password',
+            'gr-input--kind-money': kind === 'money',
+            'gr-input--kind-phone': kind === 'phone-number' || kind === 'phone-number-with-button',
+            'gr-input--kind-date': kind === 'date',
+            'gr-input--kind-time': kind === 'time'
+          },
+          className
+        )}
+      >
+        {showLabel && size === 'xl' ? (
+          <div className="gr-input__floating-label" aria-hidden="true">
+            <Label
+              size={labelSize}
+              status={resolvedLabelStatus}
+              hint={labelHint}
+              optionalColor={labelOptionalColor}
+            >
+              {label}
+            </Label>
+          </div>
+        ) : null}
+        <input
+          className="gr-input__field"
+          disabled={isDisabled}
+          placeholder={placeholder}
+          type={inputType}
+          inputMode={inputMode}
+          {...inputValueProps}
+          ref={inputRef}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          {...rest}
+        />
+        {shouldShowIcon ? <span className="gr-input__icon">{icon}</span> : null}
+        {renderDisabledAccessory()}
+        {renderActionButton()}
+        {renderClearButton()}
+      </div>
+      {showDescription ? (
+        <Description state={resolvedDescriptionState}>{description}</Description>
+      ) : null}
     </div>
   );
 }

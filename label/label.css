@@ -43,6 +43,10 @@
   --gr-label-color: var(--color-text-negative, #d8400c);
 }
 
+.gr-label--disabled {
+  /* keep base color; lock icon indicates disabled */
+}
+
 .gr-label__icon {
   color: var(--gr-label-icon-color);
   align-self: flex-start;

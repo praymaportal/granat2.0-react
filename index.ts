@@ -35,7 +35,7 @@ export type {
   LinkIconPosition
 } from './link';
 export { Label } from './label';
-export type { LabelProps, LabelSize, LabelState } from './label';
+export type { LabelProps, LabelSize, LabelStatus, LabelHint, LabelOptionalColor } from './label';
 export { Description } from './description';
 export type { DescriptionProps, DescriptionState } from './description';
 export { Input } from './input';
@@ -44,6 +44,7 @@ export type {
   InputValidationState,
   InputDisabledAccessory,
   InputSize,
+  InputColor,
   InputKind,
   InputPasswordVisibility
 } from './input';
