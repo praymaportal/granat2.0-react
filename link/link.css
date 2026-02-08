@@ -3,8 +3,9 @@
   --gr-link-color-visited: var(--color-text-visited-link, #883888);
   --gr-link-line-opacity: 0;
   --gr-link-hover-line-opacity: 1;
-  --gr-link-underline-bg: transparent;
-  --gr-link-underline-bg-hover: currentColor;
+  /* Use background-image so we can express both solid and dashed via gradients. */
+  --gr-link-underline-bg: none;
+  --gr-link-underline-bg-hover: linear-gradient(currentColor, currentColor);
   --gr-link-underline-bg-size: 100% var(--gr-link-underline-thickness);
   --gr-link-underline-repeat: no-repeat;
   --gr-link-underline-thickness: 1px;
@@ -106,15 +107,15 @@
 .gr-link--underline-none {
   --gr-link-line-opacity: 0;
   --gr-link-hover-line-opacity: 1;
-  --gr-link-underline-bg: transparent;
-  --gr-link-underline-bg-hover: currentColor;
+  --gr-link-underline-bg: none;
+  --gr-link-underline-bg-hover: linear-gradient(currentColor, currentColor);
 }
 
 .gr-link--underline-solid {
   --gr-link-line-opacity: 1;
   --gr-link-hover-line-opacity: 0;
-  --gr-link-underline-bg: currentColor;
-  --gr-link-underline-bg-hover: transparent;
+  --gr-link-underline-bg: linear-gradient(currentColor, currentColor);
+  --gr-link-underline-bg-hover: none;
   --gr-link-underline-bg-size: 100% var(--gr-link-underline-thickness);
   --gr-link-underline-repeat: no-repeat;
 }
@@ -127,7 +128,7 @@
     currentColor 0 4px,
     transparent 4px 8px
   );
-  --gr-link-underline-bg-hover: transparent;
+  --gr-link-underline-bg-hover: none;
   --gr-link-underline-bg-size: auto;
   --gr-link-underline-repeat: repeat-x;
 }
