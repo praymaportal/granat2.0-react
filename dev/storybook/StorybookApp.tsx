@@ -26,8 +26,20 @@ import InputStory from '../stories/Input.story';
 import InputPropsStory from '../stories/InputProps.story';
 import CheckboxStory from '../stories/Checkbox.story';
 import CheckboxPropsStory from '../stories/CheckboxProps.story';
+import TokensIconsStory from '../stories/TokensIcons.story';
+import TokensFontsStory from '../stories/TokensFonts.story';
+import TokensColorsStory from '../stories/TokensColors.story';
 
 const navItems = [
+  {
+    id: 'tokens',
+    label: 'tokens',
+    children: [
+      { id: 'tokens-icons', label: 'icons' },
+      { id: 'tokens-fonts', label: 'fonts' },
+      { id: 'tokens-colors', label: 'colors' }
+    ]
+  },
   {
     id: 'icon',
     label: 'icon',
@@ -155,6 +167,9 @@ const storyMap = {
   'input-props': <InputPropsStory />,
   'checkbox-all': <CheckboxStory />,
   'checkbox-props': <CheckboxPropsStory />,
+  'tokens-icons': <TokensIconsStory />,
+  'tokens-fonts': <TokensFontsStory />,
+  'tokens-colors': <TokensColorsStory />,
   'counter-all': <CounterStory />,
   'counter-props': <CounterPropsStory />,
   'card-all': <CardStory />,

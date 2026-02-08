@@ -21,6 +21,7 @@ const ICON_IMPORTERS = {
 
 const urlCache = new Map<string, string>();
 const pendingCache = new Map<string, Promise<string | null>>();
+const resolvedKeyCache = new Map<string, string | null>();
 
 const STYLE_ELEMENT_ID = 'granat-icon-styles';
 // Track what URL was last written for a given class, so we can safely update on hot reload
@@ -40,17 +41,89 @@ function ensureMaskRule(className: string, url: string) {
   }
 
   // Avoid CSSOM insertRule edge cases; plain text is enough here.
+  const escaped = typeof CSS !== 'undefined' && 'escape' in CSS ? CSS.escape(className) : className;
   styleEl.appendChild(
     document.createTextNode(
-      `.${className}{-webkit-mask-image:url("${url}");mask-image:url("${url}");}\n`
+      `.${escaped}{-webkit-mask-image:url("${url}");mask-image:url("${url}");}\n`
     )
   );
 
   insertedRules.set(className, url);
 }
 
-function resolveIconKey(pack: IconPack, name: string, size: IconSize, variant: IconVariant) {
-  return `../icons/${pack}/${name}/size-${size}-style-${variant}.svg`;
+function sanitizeClassPart(input: string) {
+  // Keep it readable, but safe for CSS class names. Important for icons like "player-speed-x1.5".
+  return input.replace(/[^a-z0-9_-]/gi, '_');
+}
+
+function pickBestCandidate(candidates: string[], preferredVariant: IconVariant) {
+  if (!candidates.length) return null;
+  // Prefer "status-100" if present (battery-like icons), otherwise stable first (sorted).
+  const status100 = candidates.find((k) => k.includes('status-100'));
+  if (status100) return status100;
+  const charging = candidates.find((k) => k.includes('status-charging'));
+  if (charging) return charging;
+  // If still multiple, pick lexicographically so it stays stable.
+  const sorted = [...candidates].sort((a, b) => a.localeCompare(b));
+  // Prefer the pure outline/fill file if it exists among candidates.
+  const exact = sorted.find((k) => k.endsWith(`style-${preferredVariant}.svg`));
+  return exact ?? sorted[0];
+}
+
+function resolveImporterKey(pack: IconPack, name: string, size: IconSize, variant: IconVariant) {
+  const cacheKey = `${pack}|${name}|${size}|${variant}`;
+  const cached = resolvedKeyCache.get(cacheKey);
+  if (cached !== undefined) return cached;
+
+  const desired = `../icons/${pack}/${name}/size-${size}-style-${variant}.svg`;
+  if (desired in ICON_IMPORTERS) {
+    resolvedKeyCache.set(cacheKey, desired);
+    return desired;
+  }
+
+  const exactSizePrefix = `../icons/${pack}/${name}/size-${size}-style-${variant}`;
+  const exactSizeCandidates = Object.keys(ICON_IMPORTERS).filter(
+    (k) => k.startsWith(exactSizePrefix) && k.endsWith('.svg')
+  );
+  const exactSizePick = pickBestCandidate(exactSizeCandidates, variant);
+  if (exactSizePick) {
+    resolvedKeyCache.set(cacheKey, exactSizePick);
+    return exactSizePick;
+  }
+
+  // Fallback: icons might not have the requested size. Pick closest available size for the same pack/name/style.
+  const anySizeCandidates = Object.keys(ICON_IMPORTERS).filter((k) => {
+    if (!k.startsWith(`../icons/${pack}/${name}/size-`)) return false;
+    return k.includes(`-style-${variant}`) && k.endsWith('.svg');
+  });
+
+  type Parsed = { key: string; size: number };
+  const parsed: Parsed[] = anySizeCandidates
+    .map((key) => {
+      const m = key.match(/\/size-(\d+)-style-/);
+      const parsedSize = m ? Number(m[1]) : NaN;
+      return { key, size: parsedSize };
+    })
+    .filter((p) => Number.isFinite(p.size));
+
+  if (!parsed.length) {
+    resolvedKeyCache.set(cacheKey, null);
+    return null;
+  }
+
+  const target = size;
+  parsed.sort((a, b) => {
+    const da = Math.abs(a.size - target);
+    const db = Math.abs(b.size - target);
+    if (da !== db) return da - db;
+    return a.size - b.size;
+  });
+
+  const closestSize = parsed[0].size;
+  const closestCandidates = parsed.filter((p) => p.size === closestSize).map((p) => p.key);
+  const closestPick = pickBestCandidate(closestCandidates, variant);
+  resolvedKeyCache.set(cacheKey, closestPick);
+  return closestPick;
 }
 
 async function loadIconUrl(key: string) {
@@ -88,16 +161,19 @@ export function Icon({
   ...rest
 }: IconProps) {
   const key = useMemo(
-    () => resolveIconKey(pack, name, size, variant),
+    () => resolveImporterKey(pack, name, size, variant),
     [pack, name, size, variant]
   );
-  const resolvedClass = `gr-icon--${pack}-${name}-${size}-${variant}`;
-  const [url, setUrl] = useState<string | null>(() => urlCache.get(key) ?? null);
+  const resolvedClass = `gr-icon--${sanitizeClassPart(pack)}-${sanitizeClassPart(name)}-${size}-${variant}`;
+  const [url, setUrl] = useState<string | null>(() => (key ? urlCache.get(key) ?? null : null));
 
   useEffect(() => {
     let mounted = true;
     // Prevent stale URL from being used for a new icon key.
-    setUrl(urlCache.get(key) ?? null);
+    setUrl(key ? urlCache.get(key) ?? null : null);
+    if (!key) return () => {
+      mounted = false;
+    };
     void loadIconUrl(key).then((next) => {
       if (!mounted) return;
       setUrl(next);
