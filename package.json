@@ -1,29 +1,63 @@
 {
   "name": "granat2.0-react",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "description": "Granat UI component library",
-  "main": "./dist/granat-ui.cjs.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/praymaportal/granat2.0-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/praymaportal/granat2.0-react/issues"
+  },
+  "homepage": "https://github.com/praymaportal/granat2.0-react#readme",
+  "main": "./dist/granat-ui.cjs",
   "module": "./dist/granat-ui.es.js",
   "types": "./dist/types/index.d.ts",
+  "style": "./dist/style.css",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/granat-ui.es.js",
+      "require": "./dist/granat-ui.cjs"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE.md",
+    "STYLE_GUIDE.md"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -p tsconfig.build.json && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "imask": "^7.6.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "imask": "^7.6.1"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "devDependencies": {
     "@types/node": "^25.2.1",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^4.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

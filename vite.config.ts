@@ -21,7 +21,8 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'index.ts'),
       name: 'GranatUI',
-      fileName: (format) => `granat-ui.${format}.js`,
+      // Ensure CJS output keeps a real `.cjs` extension even with `"type": "module"`.
+      fileName: (format) => (format === 'cjs' ? 'granat-ui.cjs' : 'granat-ui.es.js'),
       formats: ['es', 'cjs']
     },
     rollupOptions: {
