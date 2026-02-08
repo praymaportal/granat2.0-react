@@ -95,7 +95,15 @@ Verify:
 
 ## Required imports (always)
 
-1) Import our global styles once at the application entry:
+1) Import our global styles once at the application entry.
+
+Figma Make note: if your environment cannot read large files, prefer the minified stylesheet:
+
+```ts
+import 'granat2.0-react/style.min.css';
+```
+
+Otherwise (standard usage):
 
 ```ts
 import 'granat2.0-react/style.css';
@@ -105,6 +113,12 @@ import 'granat2.0-react/style.css';
 
 ```ts
 import { Button, Input, Checkbox } from 'granat2.0-react';
+```
+
+Figma Make note: if Make needs to inspect JS but hits file-size limits, use the min build:
+
+```ts
+import { Button, Input, Checkbox } from 'granat2.0-react/min';
 ```
 
 ## Theme
@@ -134,6 +148,52 @@ Do not implement your own theme system.
   - `--gr-<component>-<token-name>: ...;`
   - Keep it local to the component stylesheet.
 
+## Token lookup (do not guess names)
+
+Do **not** invent token names (example of a wrong guess: `--shadow-elevated-1`). If you need a token:
+
+- Verify it exists by searching in `node_modules/granat2.0-react/dist/style.css`.
+- If you cannot verify, **ask** instead of guessing.
+
+### Practical verification (how to check)
+
+If you have filesystem access (typical local dev / Make project workspace), verify tokens and component API before writing CSS/JSX:
+
+```bash
+# Tokens (colors / shadows / radii / spacings)
+rg -n --fixed-strings "--color-" node_modules/granat2.0-react/dist/style.css
+rg -n --fixed-strings "--shadow-" node_modules/granat2.0-react/dist/style.css
+rg -n --fixed-strings "--radius-" node_modules/granat2.0-react/dist/style.css
+rg -n --fixed-strings "--spacing-" node_modules/granat2.0-react/dist/style.css
+
+# Component API / props
+rg -n "export interface (Input|Button|IconButton|Checkbox|Link)Props" node_modules/granat2.0-react/dist/types/index.d.ts
+```
+
+If your environment does not allow reading `node_modules`, do not guess. Ask which token/prop to use.
+
+### Text colors (common)
+
+- Muted/secondary text: `color: var(--color-text-secondary);`
+- Primary text: `color: var(--color-text-primary);`
+- Important: if a color looks wrong, first check that:
+  - `granat2.0-react/style.css` is imported, and
+  - theme is set (e.g. `data-mts-theme="light"`).
+
+### Shadows (common)
+
+Use only our shadow tokens:
+
+- `--shadow-lowest`
+- `--shadow-low`
+- `--shadow-middle`
+- `--shadow-upper-middle`
+- `--shadow-high`
+
+You can apply them either as `box-shadow: var(--shadow-high);` or via utility classes:
+`.shadow-xs/.shadow-lowest`, `.shadow-sm/.shadow-low`, `.shadow-md/.shadow-middle`,
+`.shadow-lg/.shadow-upper-middle`, `.shadow-xl/.shadow-high`.
+
 ## Layout and sizing rules (Figma fidelity)
 
 - If a component in Figma is **full width** (fills its container), do not rely on "auto" sizing.
@@ -148,6 +208,22 @@ Examples:
   ОСТАВИТЬ ЗАЯВКУ
 </Button>
 ```
+
+### Checkbox row alignment (layout fidelity)
+
+When you place `Checkbox` next to a 1-line label (like "Я даю согласие..."), do **not** use padding hacks.
+Use a flex row with vertical centering:
+
+```css
+.consent-row {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* measure in Figma */
+}
+```
+
+If the label is multi-line and the design aligns to the top, then use `align-items: flex-start` **only**
+when Figma shows it, and measure offsets explicitly (no guessing).
 
 ## Typography rules (Figma fidelity)
 
